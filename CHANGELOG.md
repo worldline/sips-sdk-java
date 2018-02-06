@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 1.0.0 - [unreleased]
+## 1.0.0 - [2017-02-06]
 
 ### Added
 - Support for _SIPS 2.0_ in payment page mode
