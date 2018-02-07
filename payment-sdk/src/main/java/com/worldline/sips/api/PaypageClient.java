@@ -148,7 +148,7 @@ public class PaypageClient {
     }
 
     /**
-     * Verify the seal of a initialization response.To avoid tampered data for processed payments,
+     * Verify the seal of a payment page response.To avoid tampered data for processed payments,
      * the seal for the received response should always be verified before returning the object to the user.
      *
      * @param data the received response's Data attribute
@@ -158,7 +158,7 @@ public class PaypageClient {
     private void verifySeal(String data, String seal) throws IncorrectSealException {
         String correctSeal = DigestUtils.sha256Hex(data + secretKey);
         if (!StringUtils.equals(correctSeal, seal)) {
-            throw new IncorrectSealException("The initialization response has been tampered with!");
+            throw new IncorrectSealException("The payment page response has been tampered with!");
         }
     }
 
