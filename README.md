@@ -10,7 +10,7 @@ This library is provided on the Maven Central Repo. To install it, simply add a 
 <dependency>
     <groupId>com.worldline.sips</groupId>
     <artifactId>payment-sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
