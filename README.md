@@ -20,7 +20,7 @@ This library is provided on the Maven Central Repo. To install it, simply add a 
 ### Initialization
 First, create a client for the desired environment using your merchant ID, key version & secret key:
 ```java
-Paypage paypageClient = new PaypageClient(
+PaypageClient paypageClient = new PaypageClient(
         Environment.SIMU, 
         "002001000000002", 
         1, // This shouldn't be hardcoded here...
