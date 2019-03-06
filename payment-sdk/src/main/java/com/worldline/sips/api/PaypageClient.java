@@ -12,6 +12,7 @@ import com.worldline.sips.model.PaypageResponse;
 import com.worldline.sips.util.SealCalculator;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpHost;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -33,6 +34,9 @@ public class PaypageClient {
     private Integer keyVersion;
     private String merchantId;
     private String secretKey;
+    private String proxyHost;
+    private Integer proxyPort;
+    private boolean proxyEnabled;
 
     /**
      * Construct a new instance of the client for a given {@link Environment}
@@ -45,7 +49,8 @@ public class PaypageClient {
      * @throws InvalidKeyException         when the key version is null, or a key is blank, empty or null.
      * @throws InvalidMerchantException    when the key version is null, or a key is blank, empty or null.
      */
-    public PaypageClient(Environment environment, String merchantId, Integer keyVersion, String secretKey) throws InvalidEnvironmentException, InvalidKeyException, InvalidMerchantException {
+    public PaypageClient(Environment environment, String merchantId, Integer keyVersion, String secretKey, boolean proxyEnabled, String proxyHost, Integer proxyPort)
+        throws InvalidEnvironmentException, InvalidKeyException, InvalidMerchantException, IncorrectProxyConfException {
         if (environment == null) {
             throw new InvalidEnvironmentException("Invalid environment specified!");
         }
@@ -62,10 +67,19 @@ public class PaypageClient {
             throw new InvalidKeyException("Invalid key specified!");
         }
 
+        if (proxyEnabled) {
+           if(StringUtils.isBlank(proxyHost) || proxyPort == null){
+               throw new IncorrectProxyConfException("ProxyEnabled is true but proxyHost or proxyPort not filled");
+           }
+        }
+
         this.environment = environment;
         this.keyVersion = keyVersion;
         this.merchantId = merchantId;
         this.secretKey = secretKey;
+        this.proxyEnabled=proxyEnabled;
+        this.proxyHost=proxyHost;
+        this.proxyPort=proxyPort;
     }
 
     /**
@@ -82,7 +96,13 @@ public class PaypageClient {
      * @see #verifySeal(InitializationResponse)
      */
     public InitializationResponse initialize(PaymentRequest paymentRequest) throws IncorrectSealException, PaymentInitializationException, SealCalculationException {
-        try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
+        try {
+            HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+            if(this.proxyEnabled){
+                HttpHost httpHost = new HttpHost(this.proxyHost, this.proxyPort);
+                httpClientBuilder.setProxy(httpHost);
+            }
+            CloseableHttpClient httpClient = httpClientBuilder.build();
             paymentRequest.setMerchantId(merchantId);
             paymentRequest.setKeyVersion(keyVersion);
             paymentRequest.setSeal(SealCalculator.calculate(

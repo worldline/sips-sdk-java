@@ -1,6 +1,7 @@
 package com.worldline.sips.api;
 
 import com.worldline.sips.api.configuration.Environment;
+import com.worldline.sips.api.exception.IncorrectProxyConfException;
 import com.worldline.sips.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PaypageClientTest {
     private PaypageClient paypageClient;
@@ -20,7 +22,7 @@ class PaypageClientTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        paypageClient = new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1");
+        paypageClient = new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1", false, null, null);
 
         paymentRequest = new PaymentRequest();
         paymentRequest.setAmount(2);
@@ -37,6 +39,21 @@ class PaypageClientTest {
         responseParameters = new HashMap<>();
         responseParameters.put("InterfaceVersion", "HP_2.0");
 
+    }
+
+    @Test
+    void testClientProxyException(){
+        assertThrows(IncorrectProxyConfException.class,()->{
+            new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1", true, "monProxy", null);
+        });
+
+        assertThrows(IncorrectProxyConfException.class,()->{
+            new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1", true, "", 3128);
+        });
+
+        assertThrows(IncorrectProxyConfException.class,()->{
+            new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1", true, null, null);
+        });
     }
 
     @Test
