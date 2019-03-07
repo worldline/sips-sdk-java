@@ -49,8 +49,13 @@ public class PaypageClient {
      * @throws InvalidKeyException         when the key version is null, or a key is blank, empty or null.
      * @throws InvalidMerchantException    when the key version is null, or a key is blank, empty or null.
      */
+    public PaypageClient(Environment environment, String merchantId, Integer keyVersion, String secretKey)
+        throws InvalidEnvironmentException, IncorrectProxyConfException, InvalidKeyException, InvalidMerchantException {
+        this(environment, merchantId, keyVersion, secretKey, false, null, null);
+    }
+
     public PaypageClient(Environment environment, String merchantId, Integer keyVersion, String secretKey, boolean proxyEnabled, String proxyHost, Integer proxyPort)
-        throws InvalidEnvironmentException, InvalidKeyException, InvalidMerchantException, IncorrectProxyConfException {
+        throws InvalidEnvironmentException, InvalidMerchantException, InvalidKeyException, IncorrectProxyConfException {
         if (environment == null) {
             throw new InvalidEnvironmentException("Invalid environment specified!");
         }
@@ -68,9 +73,9 @@ public class PaypageClient {
         }
 
         if (proxyEnabled) {
-           if(StringUtils.isBlank(proxyHost) || proxyPort == null){
-               throw new IncorrectProxyConfException("ProxyEnabled is true but proxyHost or proxyPort not filled");
-           }
+            if(StringUtils.isBlank(proxyHost) || proxyPort == null){
+                throw new IncorrectProxyConfException("ProxyEnabled is true but proxyHost or proxyPort not filled");
+            }
         }
 
         this.environment = environment;

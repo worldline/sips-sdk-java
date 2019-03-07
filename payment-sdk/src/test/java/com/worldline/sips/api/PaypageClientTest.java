@@ -22,7 +22,7 @@ class PaypageClientTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        paypageClient = new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1", false, null, null);
+        paypageClient = new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1");
 
         paymentRequest = new PaymentRequest();
         paymentRequest.setAmount(2);
