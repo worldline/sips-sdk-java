@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.0 - [2019-03-06]
+
+### Added
+- Support for proxy on Sips HTTP Client
+
+### Upgraded
+- Update Jackson dependency to 2.9.8
+
 ## 1.0.1 - [2017-02-07]
 
 ### Fixed
