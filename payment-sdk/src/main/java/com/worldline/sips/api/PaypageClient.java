@@ -45,6 +45,7 @@ public class PaypageClient {
      * @param merchantId  the merchant's ID.
      * @param keyVersion  the version of the secret key to use.
      * @param secretKey   the merchant's secret key.
+     * @throws IncorrectProxyConfException when the proxy configuration is incorrect
      * @throws InvalidEnvironmentException when an unknown environment is specified
      * @throws InvalidKeyException         when the key version is null, or a key is blank, empty or null.
      * @throws InvalidMerchantException    when the key version is null, or a key is blank, empty or null.
