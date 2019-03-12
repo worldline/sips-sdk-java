@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 1.1.0 - [2019-03-06]
+## 1.1.0 - [unreleased]
+
+### Changed
+- Switched from Maven to Gradle for build
 
 ### Added
 - Support for proxy on Sips HTTP Client
