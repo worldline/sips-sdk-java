@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Support for proxy on Sips HTTP Client
+- Support for ISP groups
 
 ### Upgraded
 - Update Jackson dependency to 2.9.8
