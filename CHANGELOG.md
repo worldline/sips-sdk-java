@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 1.1.0 - [unreleased]
+## 1.1.0 - [2019-03-12]
 
 ### Changed
 - Switched from Maven to Gradle for build
