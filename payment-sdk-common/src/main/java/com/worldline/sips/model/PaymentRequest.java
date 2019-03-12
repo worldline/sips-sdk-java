@@ -37,6 +37,7 @@ public class PaymentRequest {
     private Contact deliveryContact;
     private Address holderAddress;
     private Contact holderContact;
+    private String intermediateServiceProviderId;
     private Integer keyVersion;
     private String merchantId;
     private String merchantWalletId;
@@ -172,6 +173,14 @@ public class PaymentRequest {
     @JsonProperty("interfaceVersion")
     public String getInterfaceVersion() {
         return INTERFACE_VERSION;
+    }
+
+    public String getIntermediateServiceProviderId() {
+        return intermediateServiceProviderId;
+    }
+
+    public void setIntermediateServiceProviderId(String intermediateServiceProviderId) {
+        this.intermediateServiceProviderId = intermediateServiceProviderId;
     }
 
     public Integer getKeyVersion() {
