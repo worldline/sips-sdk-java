@@ -6,7 +6,7 @@ allprojects {
     sourceCompatibility = 1.8
 
     group 'com.worldline.playground'
-    version '1.1.1-SNAPSHOT'
+    version '1.1.1'
 
     task sourcesJar(type: Jar, dependsOn: classes) {
         classifier = 'sources'
@@ -25,6 +25,7 @@ allprojects {
                 artifact sourcesJar
                 artifact javadocJar
                 pom {
+                    name = 'SIPS Payment SDK'
                     description = 'This library simplifies the use of SIPS 2.0, the Worldline e-payments API'
                     url = 'https://github.com/worldline/sips-sdk-java/'
                     licenses {
