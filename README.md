@@ -1,16 +1,25 @@
-# SIPS Payment SDK
+# SIPS Payment SDK [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.worldline.sips/payment-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.worldline.sips/payment-sdk)
 This package provides a JAVA implementation for SIPS, the Worldline e-payments gateway.
 
 > :warning: This library was written for SIPS 2.0 and is not compatible with SIPS 1.0!
 
 ## Installing
 
-This library is provided on the Maven Central Repo. To install it, simply add a dependency to your project's POM:
+### using Gradle
+```groovy
+
+dependencies {
+    implementation 'com.worldline.sips:payment-sdk:1.1.1'
+}
+
+```
+
+### using Maven
 ```xml
 <dependency>
     <groupId>com.worldline.sips</groupId>
     <artifactId>payment-sdk</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
@@ -74,5 +83,5 @@ PaypageResponse paypageResponse = paypageClient.decodeResponse(mappedRequestPara
 ```
  
 > :warning: Since the customer is not always redirecting back (e.g. he closes the confirmation page), it's a
-a good practice to include an `automaticReturnUrl`. SIPS will always POST details on the transaction on this URL,
+a good practice to include an `automaticResponseUrl`. SIPS will always POST details on the transaction on this URL,
 even if a customer doesn't redirect back to your application.
