@@ -25,6 +25,7 @@ allprojects {
                 artifact sourcesJar
                 artifact javadocJar
                 pom {
+                    name = 'SIPS Payment SDK'
                     description = 'This library simplifies the use of SIPS 2.0, the Worldline e-payments API'
                     url = 'https://github.com/worldline/sips-sdk-java/'
                     licenses {
