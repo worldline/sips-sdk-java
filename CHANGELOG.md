@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.1.1 - [2019-03-13]
+
+### Changed
+- Optimized Gradle build process
+- Bumped interface version to 19R1 (IR_WS_2.23)
+
 ## 1.1.0 - [2019-03-12]
 
 ### Changed
