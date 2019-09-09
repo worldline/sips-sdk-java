@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.2.0 - [unreleased]
+### Added
+- Support for Carte Bancaire
+
+### Upgraded
+- Update fasterxml/jackson to 2.9.9
+- Update apache/httpclient to 4.5.9
+- Update apache/commons-lang3 to 3.9
+- Upate apache/comons-codec to 1.13
+- Update to JUnit 5.5
+
+### Changed
+- Optimized Gradle build process
+- Bumped interface version to 19R4 (IR_WS_2.26)
+
 ## 1.1.1 - [2019-03-13]
 
 ### Changed
