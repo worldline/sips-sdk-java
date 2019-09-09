@@ -1,7 +1,13 @@
 # SIPS Payment SDK [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.worldline.sips/payment-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.worldline.sips/payment-sdk)
-This package provides a JAVA implementation for SIPS, the Worldline e-payments gateway.
+This package provides a JAVA implementation for SIPS, a Worldline e-payments gateway.
 
-> :warning: This library was written for SIPS 2.0 and is not compatible with SIPS 1.0!
+> :warning: This library was written for SIPS 2.0 and is not compatible with SIPS 1.0
+
+## Before you begin
+This package contains a basic connector for SIPS, based on the **SIPS Paypage JSON API**.
+Please refer to the [documentation](https://documentation.sips.worldline.com) for a better understanding.
+
+If you find field or functionality is missing, feel free to submit a PR or create an issue.  
 
 ## Installing
 
@@ -9,7 +15,7 @@ This package provides a JAVA implementation for SIPS, the Worldline e-payments g
 ```groovy
 
 dependencies {
-    implementation 'com.worldline.sips:payment-sdk:1.1.1'
+    implementation 'com.worldline.sips:payment-sdk:1.2.0'
 }
 
 ```
@@ -19,7 +25,7 @@ dependencies {
 <dependency>
     <groupId>com.worldline.sips</groupId>
     <artifactId>payment-sdk</artifactId>
-    <version>1.1.1</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
@@ -30,11 +36,12 @@ dependencies {
 First, create a client for the desired environment using your merchant ID, key version & secret key:
 ```java
 PaypageClient paypageClient = new PaypageClient(
-        Environment.SIMU, 
+        Environment.TEST, 
         "002001000000002", 
         1, // This shouldn't be hardcoded here...
         "002001000000002_KEY1"); // ...and neither should this.
 ```
+> :bulb: Merchant data for SIPS TEST can be found in the documentation.
 
 Then set up a request to initalize a session on the SIPS server:
 
