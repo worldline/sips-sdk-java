@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 1.2.0 - [unreleased]
+## 1.2.0 - [2019-09-09]
 ### Added
 - Support for Carte Bancaire
 
