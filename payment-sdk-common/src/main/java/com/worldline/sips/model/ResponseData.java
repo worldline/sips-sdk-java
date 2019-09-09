@@ -47,6 +47,31 @@ public class ResponseData {
     private String transactionReference;
     private WalletType walletType;
 
+    private String acquirerNativeResponseCode;
+    private String acquirerResponseIdentifier;
+    private String acquirerResponseMessage;
+
+    private String cardProductCode;
+    private String cardProductName;
+
+    private String customerBusinessName;
+    private String customerCompanyName;
+    private String customerEmail;
+    private String customerId;
+
+    private String holderContactEmail;
+    private String interfaceVersion;
+    private String issuerCode;
+    private String issuerCountryCode;
+    private String issuerEnrollementIndicator;
+    private String issuerWalletInformation;
+
+    private String merchantSessionId;
+    private String merchantWalletId;
+    private String orderId;
+
+
+
     public int getAmount() {
         return amount;
     }
@@ -173,5 +198,77 @@ public class ResponseData {
 
     public WalletType getWalletType() {
         return walletType;
+    }
+
+    public String getAcquirerNativeResponseCode() {
+        return acquirerNativeResponseCode;
+    }
+
+    public String getAcquirerResponseIdentifier() {
+        return acquirerResponseIdentifier;
+    }
+
+    public String getAcquirerResponseMessage() {
+        return acquirerResponseMessage;
+    }
+
+    public String getCardProductCode() {
+        return cardProductCode;
+    }
+
+    public String getCardProductName() {
+        return cardProductName;
+    }
+
+    public String getCustomerBusinessName() {
+        return customerBusinessName;
+    }
+
+    public String getCustomerCompanyName() {
+        return customerCompanyName;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public String getHolderContactEmail() {
+        return holderContactEmail;
+    }
+
+    public String getInterfaceVersion() {
+        return interfaceVersion;
+    }
+
+    public String getIssuerCode() {
+        return issuerCode;
+    }
+
+    public String getIssuerCountryCode() {
+        return issuerCountryCode;
+    }
+
+    public String getIssuerEnrollementIndicator() {
+        return issuerEnrollementIndicator;
+    }
+
+    public String getIssuerWalletInformation() {
+        return issuerWalletInformation;
+    }
+
+    public String getMerchantSessionId() {
+        return merchantSessionId;
+    }
+
+    public String getMerchantWalletId() {
+        return merchantWalletId;
+    }
+
+    public String getOrderId() {
+        return orderId;
     }
 }
