@@ -31,7 +31,9 @@ public class PaymentRequest {
     private Currency currencyCode;
     private CustomerAddress customerAddress;
     private CustomerContact customerContact;
+    private String customerEmail;
     private String customerId;
+    private String customerIpAddress;
     private Language customerLanguage;
     private Address deliveryAddress;
     private Contact deliveryContact;
@@ -40,10 +42,13 @@ public class PaymentRequest {
     private String intermediateServiceProviderId;
     private Integer keyVersion;
     private String merchantId;
+    private String merchantSessionId;
     private String merchantWalletId;
     private URL normalReturnUrl;
     private OrderChannel orderChannel;
     private String orderId;
+    private String returnContext;
+    private String transactionOrigin;
     private String transactionReference;
     private String seal;
     private String statementReference;
@@ -122,12 +127,28 @@ public class PaymentRequest {
         this.customerContact = customerContact;
     }
 
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+
     public String getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getCustomerIpAddress() {
+        return customerIpAddress;
+    }
+
+    public void setCustomerIpAddress(String customerIpAddress) {
+        this.customerIpAddress = customerIpAddress;
     }
 
     public Language getCustomerLanguage() {
@@ -197,6 +218,14 @@ public class PaymentRequest {
 
     public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
+    }
+
+    public String getMerchantSessionId() {
+        return merchantSessionId;
+    }
+
+    public void setMerchantSessionId(String merchantSessionId) {
+        this.merchantSessionId = merchantSessionId;
     }
 
     public String getMerchantWalletId() {

@@ -4,7 +4,6 @@ package com.worldline.sips.api.configuration;
  * The different environments available for the Worldline SIPS API.
  */
 public enum Environment {
-    SIMU("https://payment-webinit.simu.sips-atos.com/rs-services/v2/paymentInit"),
     TEST("https://payment-webinit.test.sips-atos.com/rs-services/v2/paymentInit"),
     PROD("https://payment-webinit.sips-atos.com/rs-services/v2/paymentInit");
 

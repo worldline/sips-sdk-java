@@ -4,7 +4,7 @@ public class Configuration {
     /**
      * The targeted version of the API
      */
-    public static final String INTERFACE_VERSION = "IR_WS_2.23";
+    public static final String INTERFACE_VERSION = "IR_WS_2.26";
 
     private Configuration() {
         // Nothing to see here
