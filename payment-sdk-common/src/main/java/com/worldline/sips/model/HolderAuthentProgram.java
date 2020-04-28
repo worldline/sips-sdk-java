@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 public enum HolderAuthentProgram {
     ONE_EUROCOM,
     THREE_DS,
+    THREE_DS_V2,
     ARP,
     BCMCMOBILE,
     MASTERPASS,
