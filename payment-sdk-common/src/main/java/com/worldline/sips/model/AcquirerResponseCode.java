@@ -7,6 +7,7 @@ import com.worldline.sips.exception.UnknownStatusException;
 import java.util.Arrays;
 
 public enum AcquirerResponseCode {
+    THREED_AUTHENTICATION_DATA_MISSING("A1"),
     TRANSACTION_SUCCESS("00"),
     CONTACT_ISSUER("02"),
     INVALID_ACCEPTOR("03"),
