@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 1.3.0 - [unreleased]
+## 1.3.0 - [2020-12-03]
 Updated classes conform Data Dictionary 20R6
 
 
