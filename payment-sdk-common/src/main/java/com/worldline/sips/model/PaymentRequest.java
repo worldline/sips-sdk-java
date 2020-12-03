@@ -256,6 +256,22 @@ public class PaymentRequest {
         return orderId;
     }
 
+    public String getReturnContext() {
+        return returnContext;
+    }
+
+    public void setReturnContext(String returnContext) {
+        this.returnContext = returnContext;
+    }
+
+    public String getTransactionOrigin() {
+        return transactionOrigin;
+    }
+
+    public void setTransactionOrigin(String transactionOrigin) {
+        this.transactionOrigin = transactionOrigin;
+    }
+
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
