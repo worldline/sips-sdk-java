@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.0 - [unreleased]
+:warning: **BREAKING:** Changed SIPS platform URLs
+
+### Changed
+- Bumped interface version to 21R1 (IR_WS_2.35)
+
+### Upgraded
+- Update fasterxml/jackson to 2.12.1
+
 ## 1.3.0 - [2020-12-03]
 Updated classes conform Data Dictionary 20R6
 
