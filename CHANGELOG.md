@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## 1.4.0 - [unreleased]
+## 1.4.0 - [2021-01-26]
 :warning: **BREAKING:** Changed SIPS platform URLs
 
 ### Changed
@@ -18,7 +18,7 @@ Updated classes conform Data Dictionary 20R6
 - Update fasterxml/jackson to 2.12.0
 - Update apache/httpclient to 4.5.13
 - Update apache/commons-lang3 to 3.11
-- Update apache/comons-codec to 1.15
+- Update apache/commons-codec to 1.15
 
 ## 1.2.0 - [2019-09-09]
 ### Added
@@ -28,7 +28,7 @@ Updated classes conform Data Dictionary 20R6
 - Update fasterxml/jackson to 2.9.9
 - Update apache/httpclient to 4.5.9
 - Update apache/commons-lang3 to 3.9
-- Update apache/comons-codec to 1.13
+- Update apache/commons-codec to 1.13
 - Update to JUnit 5.5
 
 ### Changed
