@@ -6,7 +6,7 @@ allprojects {
     sourceCompatibility = 1.8
 
     group 'com.worldline.sips'
-    version '1.4.1-SNAPSHOT'
+    version '1.4.1'
 
     task sourcesJar(type: Jar, dependsOn: classes) {
         archiveClassifier.set("sources")

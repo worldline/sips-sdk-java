@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.1 - [2021-03-04]
+### Changed
+- Sort PaymentMeanBrands for seal calculation
+- Reinstated tests
+
+
 ## 1.4.0 - [2021-01-26]
 :warning: **BREAKING:** Changed SIPS platform URLs
 
