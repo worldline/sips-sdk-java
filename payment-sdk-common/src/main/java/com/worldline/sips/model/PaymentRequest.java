@@ -6,8 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.worldline.sips.configuration.Configuration;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Request to initialize a session with the Worldline SIPS API.
@@ -20,7 +19,7 @@ import java.util.List;
 public class PaymentRequest {
     private static final String INTERFACE_VERSION = Configuration.INTERFACE_VERSION;
 
-    private final List<PaymentMeanBrand> paymentMeanBrandList = new ArrayList<>();
+    private final TreeSet<PaymentMeanBrand> paymentMeanBrandList = new TreeSet<>();
 
     private Integer amount;
     private URL automaticResponseUrl;
@@ -276,7 +275,7 @@ public class PaymentRequest {
         this.orderId = orderId;
     }
 
-    public List<PaymentMeanBrand> getPaymentMeanBrandList() {
+    public TreeSet<PaymentMeanBrand> getPaymentMeanBrandList() {
         return paymentMeanBrandList;
     }
 
