@@ -22,7 +22,7 @@ class PaypageClientTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        paypageClient = new PaypageClient(Environment.TEST, "002001000000001", 1, "002001000000001_KEY1");
+        paypageClient = new PaypageClient(Environment.SIMU, "002001000000001", 1, "002001000000001_KEY1");
 
         paymentRequest = new PaymentRequest();
         paymentRequest.setAmount(2);
@@ -30,11 +30,6 @@ class PaypageClientTest {
         paymentRequest.setOrderChannel(OrderChannel.INTERNET);
         paymentRequest.setNormalReturnUrl(new URL("http://localhost"));
         paymentRequest.setTransactionReference(UUID.randomUUID().toString().substring(0, 12).replace("-", ""));
-
-        CustomerContact customerContact = new CustomerContact();
-        customerContact.setFirstName("firstName");
-        customerContact.setLastName("lastName");
-        paymentRequest.setCustomerContact(customerContact);
 
         responseParameters = new HashMap<>();
         responseParameters.put("InterfaceVersion", "HP_2.0");

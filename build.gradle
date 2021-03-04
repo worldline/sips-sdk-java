@@ -78,6 +78,10 @@ allprojects {
         }
     }
 
+    test {
+        useJUnitPlatform()
+    }
+
     repositories {
         mavenCentral()
     }
