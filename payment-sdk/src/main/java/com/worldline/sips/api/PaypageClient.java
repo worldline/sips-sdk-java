@@ -2,13 +2,13 @@ package com.worldline.sips.api;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.worldline.sips.api.configuration.Environment;
 import com.worldline.sips.api.exception.*;
 import com.worldline.sips.exception.SealCalculationException;
 import com.worldline.sips.model.InitializationResponse;
 import com.worldline.sips.model.PaymentRequest;
 import com.worldline.sips.model.PaypageResponse;
+import com.worldline.sips.util.ObjectMapperHolder;
 import com.worldline.sips.util.SealCalculator;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -114,7 +114,8 @@ public class PaypageClient {
             paymentRequest.setSeal(SealCalculator.calculate(
                     SealCalculator.getSealString(paymentRequest), secretKey));
             StringEntity requestEntity = new StringEntity(
-                    new ObjectMapper().writeValueAsString(paymentRequest),
+                    ObjectMapperHolder.INSTANCE.get().writerFor(PaymentRequest.class)
+                            .writeValueAsString(paymentRequest),
                     ContentType.APPLICATION_JSON);
 
             HttpPost postMethod = new HttpPost(getEnvironmentUrl());
@@ -122,7 +123,8 @@ public class PaypageClient {
 
             CloseableHttpResponse rawResponse = httpClient.execute(postMethod);
             InitializationResponse initializationResponse =
-                    new ObjectMapper().readValue(EntityUtils.toString(rawResponse.getEntity()), InitializationResponse.class);
+                    ObjectMapperHolder.INSTANCE.get().readerFor(InitializationResponse.class)
+                            .readValue(EntityUtils.toString(rawResponse.getEntity()));
 
             verifySeal(initializationResponse);
 
@@ -147,7 +149,7 @@ public class PaypageClient {
      */
     public PaypageResponse decodeResponse(Map<String, String> parameters) throws IncorrectSealException {
         verifySeal(parameters.get("Data"), parameters.get("Seal"));
-        return new ObjectMapper()
+        return ObjectMapperHolder.INSTANCE.get().copy()
                 .convertValue(parameters, PaypageResponse.class);
     }
 
