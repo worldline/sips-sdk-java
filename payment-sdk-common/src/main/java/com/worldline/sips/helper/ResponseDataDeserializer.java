@@ -3,31 +3,16 @@ package com.worldline.sips.helper;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.YearMonthDeserializer;
 import com.worldline.sips.model.ResponseData;
+import com.worldline.sips.util.ObjectMapperHolder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ResponseDataDeserializer extends JsonDeserializer<ResponseData> {
-
-
-    private final ObjectMapper objectMapper;
-
-    public ResponseDataDeserializer() {
-        this.objectMapper = new ObjectMapper();
-    }
 
     @Override
     public ResponseData deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
@@ -41,11 +26,7 @@ public class ResponseDataDeserializer extends JsonDeserializer<ResponseData> {
                 .collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]));
 
 
-        return objectMapper
-                .registerModule(new JavaTimeModule()
-                        .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
-                        .addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.BASIC_ISO_DATE))
-                        .addDeserializer(YearMonth.class, new YearMonthDeserializer(DateTimeFormatter.ofPattern("yyyyMM"))))
+        return ObjectMapperHolder.INSTANCE.get().copy()
                 .convertValue(mapped, ResponseData.class);
 
     }
