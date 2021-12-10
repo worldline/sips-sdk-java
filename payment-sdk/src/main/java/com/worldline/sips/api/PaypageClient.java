@@ -12,14 +12,15 @@ import com.worldline.sips.model.PaypageResponse;
 import com.worldline.sips.util.SealCalculator;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpHost;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpHost;
+import org.apache.hc.core5.http.ParseException;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.http.io.entity.StringEntity;
 
 import java.io.IOException;
 import java.net.URI;
@@ -130,7 +131,7 @@ public class PaypageClient {
 
         } catch (JsonParseException | JsonMappingException e) {
             throw new PaymentInitializationException("Exception while parsing PaymentRequest!", e);
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             throw new PaymentInitializationException("Exception while processing response from server!", e);
         }
 
