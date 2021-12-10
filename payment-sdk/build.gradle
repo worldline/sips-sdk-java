@@ -1,5 +1,5 @@
 dependencies {
-    compile project(':payment-sdk-common')
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
-    compile 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation project(':payment-sdk-common')
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
 }

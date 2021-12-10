@@ -1,6 +1,6 @@
 dependencies {
-    compile 'commons-codec:commons-codec:1.15'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
-    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
-    compile 'org.apache.commons:commons-lang3:3.11'
+    implementation 'commons-codec:commons-codec:1.15'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
+    implementation 'org.apache.commons:commons-lang3:3.11'
 }
