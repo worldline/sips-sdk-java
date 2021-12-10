@@ -13,7 +13,7 @@ public enum RedirectionStatusCode {
     DUPLICATED_TRANSACTION("94"),
     INTERNAL_ERROR("99");
 
-    private String code;
+    private final String code;
 
     RedirectionStatusCode(String code) {
         this.code = code;

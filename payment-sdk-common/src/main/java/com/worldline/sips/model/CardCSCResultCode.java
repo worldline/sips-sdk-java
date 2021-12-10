@@ -11,7 +11,7 @@ public enum CardCSCResultCode {
     CRYPTOGRAM_MISSING("53"),
     COULD_NOT_PREFORM("55");
 
-    private String code;
+    private final String code;
 
     CardCSCResultCode(String code) {
         this.code = code;

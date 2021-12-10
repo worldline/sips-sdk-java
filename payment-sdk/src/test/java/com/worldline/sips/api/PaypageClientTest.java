@@ -38,17 +38,11 @@ class PaypageClientTest {
 
     @Test
     void testClientProxyException(){
-        assertThrows(IncorrectProxyConfException.class,()->{
-            new PaypageClient(Environment.TEST, "002001000000001", 1, "002001000000001_KEY1", true, "monProxy", null);
-        });
+        assertThrows(IncorrectProxyConfException.class,()-> new PaypageClient(Environment.TEST, "002001000000001", 1, "002001000000001_KEY1", true, "monProxy", null));
 
-        assertThrows(IncorrectProxyConfException.class,()->{
-            new PaypageClient(Environment.TEST, "002001000000001", 1, "002001000000001_KEY1", true, "", 3128);
-        });
+        assertThrows(IncorrectProxyConfException.class,()-> new PaypageClient(Environment.TEST, "002001000000001", 1, "002001000000001_KEY1", true, "", 3128));
 
-        assertThrows(IncorrectProxyConfException.class,()->{
-            new PaypageClient(Environment.TEST, "002001000000001", 1, "002001000000001_KEY1", true, null, null);
-        });
+        assertThrows(IncorrectProxyConfException.class,()-> new PaypageClient(Environment.TEST, "002001000000001", 1, "002001000000001_KEY1", true, null, null));
     }
 
     @Test

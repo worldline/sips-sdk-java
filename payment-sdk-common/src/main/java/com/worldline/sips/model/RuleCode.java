@@ -75,5 +75,5 @@ public enum RuleCode {
     RP,
     PQ,
     PR,
-    QP;
+    QP
 }

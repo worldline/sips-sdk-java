@@ -52,8 +52,8 @@ public enum Currency {
     PLN("985", "Poland Zloty"),
     BRL("986", "Brazilian Real");
 
-    private String code;
-    private String description;
+    private final String code;
+    private final String description;
 
     Currency(String code, String description) {
         this.code = code;

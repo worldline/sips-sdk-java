@@ -37,7 +37,7 @@ public enum Language {
     UKRAINIAN("uk"),
     CHINESE("zh");
 
-    private String code;
+    private final String code;
 
     Language(String code) {
         this.code = code;

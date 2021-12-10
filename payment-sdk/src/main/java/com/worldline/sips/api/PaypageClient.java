@@ -31,13 +31,13 @@ import java.util.Map;
  */
 public class PaypageClient {
 
-    private Environment environment;
-    private Integer keyVersion;
-    private String merchantId;
-    private String secretKey;
-    private String proxyHost;
-    private Integer proxyPort;
-    private boolean proxyEnabled;
+    private final Environment environment;
+    private final Integer keyVersion;
+    private final String merchantId;
+    private final String secretKey;
+    private final String proxyHost;
+    private final Integer proxyPort;
+    private final boolean proxyEnabled;
 
     /**
      * Construct a new instance of the client for a given {@link Environment}

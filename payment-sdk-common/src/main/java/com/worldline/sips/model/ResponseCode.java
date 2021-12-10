@@ -24,7 +24,7 @@ public enum ResponseCode {
     TIMEFRAME_EXCEEDED("97"),
     INTERNAL_ERROR("99");
 
-    private String code;
+    private final String code;
 
     ResponseCode(String code) {
         this.code = code;

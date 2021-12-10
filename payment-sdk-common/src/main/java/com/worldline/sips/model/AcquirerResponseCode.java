@@ -52,7 +52,7 @@ public enum AcquirerResponseCode {
     SERVER_UNAVAILABLE("98"),
     INITIATOR_DOMAIN_INCIDENT("99");
 
-    private String[] codes;
+    private final String[] codes;
 
     AcquirerResponseCode(String... codes) {
         this.codes = codes;
