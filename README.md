@@ -43,7 +43,7 @@ PaypageClient paypageClient = new PaypageClient(
 ```
 > :bulb: Merchant data for SIPS TEST can be found in the documentation.
 
-Then set up a request to initalize a session on the SIPS server:
+Then set up a request to initialize a session on the SIPS server:
 
 ```java
 PaymentRequest paymentRequest = new PaymentRequest();
@@ -63,7 +63,7 @@ InitalizationResponse initializationResponse = paypageClient.initialize(paymentR
 ```
 
 The `initializationResponse` you'll receive from the server contains all information needed to continue 
-handling your transaction. If you're initialization was successful, your response will contain a 
+handling your transaction. If your initialization was successful, your response will contain a 
 `RedirectionStatusCode.TRANSACTION_INITIALIZED`.
 
 ### Making the payment
@@ -89,6 +89,6 @@ of the parameters included in the received request to your `PaypageClient`:
 PaypageResponse paypageResponse = paypageClient.decodeResponse(mappedRequestParameters);
 ```
  
-> :warning: Since the customer is not always redirecting back (e.g. he closes the confirmation page), it's a
+> :warning: Since the customer is not always redirecting back (e.g. he closes the confirmation page), it's
 a good practice to include an `automaticResponseUrl`. SIPS will always POST details on the transaction on this URL,
 even if a customer doesn't redirect back to your application.

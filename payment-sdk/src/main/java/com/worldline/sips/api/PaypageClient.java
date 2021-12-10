@@ -159,7 +159,7 @@ public class PaypageClient {
     }
 
     /**
-     * Verify the seal of a initialization response. To avoid tampered responses when a session is initialized,
+     * Verify the seal of an initialization response. To avoid tampered responses when a session is initialized,
      * the seal for the received response should always be verified before returning the object to the user.
      *
      * @param initializationResponse the received response upon initialization
