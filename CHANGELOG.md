@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.2 - [2021-12-11]
+### Changed
+- now using global ObjectMapper
+
+### Upgraded
+- Update fasterxml/jackson to 2.13.0
+- Update apache/httpclient to 5.1.2
+- Update apache/commons-lang3 to 3.12
+
 ## 1.4.1 - [2021-03-04]
 ### Changed
 - Sort PaymentMeanBrands for seal calculation
