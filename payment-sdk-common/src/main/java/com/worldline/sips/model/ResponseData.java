@@ -70,6 +70,8 @@ public class ResponseData {
     private String merchantWalletId;
     private String orderId;
 
+    private String returnContext;
+
 
 
     public int getAmount() {
@@ -270,5 +272,9 @@ public class ResponseData {
 
     public String getOrderId() {
         return orderId;
+    }
+
+    public String getReturnContext() {
+        return returnContext;
     }
 }
