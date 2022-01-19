@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 1.4.3 - [2022-01-19]
+### Added
+- added returnContext to response data.
+
+### Upgraded
+- Update fasterxml/jackson to 2.13.1
+
 ## 1.4.2 - [2021-12-11]
 ### Changed
 - now using global ObjectMapper

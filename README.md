@@ -15,7 +15,7 @@ If you find field or functionality is missing, feel free to submit a PR or creat
 ```groovy
 
 dependencies {
-    implementation 'com.worldline.sips:payment-sdk:1.4.2'
+    implementation 'com.worldline.sips:payment-sdk:1.4.3'
 }
 
 ```
@@ -25,7 +25,7 @@ dependencies {
 <dependency>
     <groupId>com.worldline.sips</groupId>
     <artifactId>payment-sdk</artifactId>
-    <version>1.4.2</version>
+    <version>1.4.3</version>
 </dependency>
 ```
 
