@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.worldline.sips.model.RuleResult;
+import com.worldline.sips.model.data.RuleResult;
 import com.worldline.sips.util.ObjectMapperHolder;
 
 import java.io.IOException;

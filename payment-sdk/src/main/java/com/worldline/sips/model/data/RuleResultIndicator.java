@@ -1,4 +1,4 @@
-package com.worldline.sips.model;
+package com.worldline.sips.model.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

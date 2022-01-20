@@ -1,4 +1,4 @@
-package com.worldline.sips.model;
+package com.worldline.sips.model.data;
 
 public enum RuleCode {
 

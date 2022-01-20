@@ -3,7 +3,7 @@ package com.worldline.sips.helper;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.worldline.sips.model.ResponseData;
+import com.worldline.sips.model.data.ResponseData;
 import com.worldline.sips.util.ObjectMapperHolder;
 import org.apache.commons.lang3.StringUtils;
 

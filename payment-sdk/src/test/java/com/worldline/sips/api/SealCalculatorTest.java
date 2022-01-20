@@ -1,12 +1,12 @@
 package com.worldline.sips.api;
 
 import com.worldline.sips.exception.SealCalculationException;
-import com.worldline.sips.model.Address;
-import com.worldline.sips.model.Currency;
-import com.worldline.sips.model.CustomerAddress;
-import com.worldline.sips.model.CustomerContact;
+import com.worldline.sips.model.data.Address;
+import com.worldline.sips.model.data.Currency;
+import com.worldline.sips.model.data.CustomerAddress;
+import com.worldline.sips.model.data.CustomerContact;
 import com.worldline.sips.model.PaymentMeanBrand;
-import com.worldline.sips.model.RedirectionStatusCode;
+import com.worldline.sips.model.data.RedirectionStatusCode;
 import com.worldline.sips.model.request.PaymentRequest;
 import com.worldline.sips.model.response.InitializationResponse;
 import com.worldline.sips.security.SealCalculator;

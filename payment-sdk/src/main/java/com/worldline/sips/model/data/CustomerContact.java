@@ -1,4 +1,4 @@
-package com.worldline.sips.model;
+package com.worldline.sips.model.data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

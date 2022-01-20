@@ -1,8 +1,8 @@
 package com.worldline.sips.model.response;
 
 import com.worldline.sips.SIPS2Response;
-import com.worldline.sips.model.RedirectionStatusCode;
-import com.worldline.sips.model.ResponseCode;
+import com.worldline.sips.model.data.RedirectionStatusCode;
+import com.worldline.sips.model.data.ResponseCode;
 import java.net.URL;
 
 /**
