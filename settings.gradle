@@ -1,2 +1,5 @@
 include(':payment-sdk-common')
 include(':payment-sdk')
+include(':wallet-sdk')
+include 'sdk-common'
+
