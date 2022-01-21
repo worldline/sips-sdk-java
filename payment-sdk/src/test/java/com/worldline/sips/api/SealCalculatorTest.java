@@ -1,5 +1,6 @@
 package com.worldline.sips.api;
 
+import com.worldline.sips.configuration.Configuration;
 import com.worldline.sips.exception.SealCalculationException;
 import com.worldline.sips.model.data.Address;
 import com.worldline.sips.model.data.Currency;
@@ -25,6 +26,7 @@ class SealCalculatorTest {
   private static final String ENCODED_RESPONSE_SEAL = "dd6eb8dd6c951b1ddc1af121007aaabe8ad4fda1d15ce386cfa455821d602025";
   private static final String DEMO_KEY = "superSafeSecretKey";
   private static final String RESPONSE_DEMO_KEY = "002001000000002_KEY1";
+
   private PaymentRequest paymentRequest;
 
   @BeforeEach
@@ -39,7 +41,7 @@ class SealCalculatorTest {
   @Test
   void getSealString() {
     String actual = SealCalculator.getSealString(paymentRequest);
-    String expected = "10http://test.comcustomerIdIR_WS_2.19customCSS.css";
+    String expected = "10http://test.comcustomerIdIR_WS_2.35customCSS.css";
     assertEquals(expected, actual, "Sealstring is incorrect!");
   }
 
@@ -47,7 +49,7 @@ class SealCalculatorTest {
   void getSealString_with_Currency() {
     paymentRequest.setCurrencyCode(Currency.EUR);
     String actual = SealCalculator.getSealString(paymentRequest);
-    String expected = "10http://test.com978customerIdIR_WS_2.19customCSS.css";
+    String expected = "10http://test.com978customerIdIR_WS_2.35customCSS.css";
     assertEquals(expected, actual, "Sealstring is incorrect!");
   }
 
@@ -56,7 +58,7 @@ class SealCalculatorTest {
     paymentRequest.getPaymentMeanBrandList().add(PaymentMeanBrand.VISA);
     paymentRequest.getPaymentMeanBrandList().add(PaymentMeanBrand.BCMC);
     String actual = SealCalculator.getSealString(paymentRequest);
-    String expected = "10http://test.comcustomerIdIR_WS_2.19BCMCVISAcustomCSS.css";
+    String expected = "10http://test.comcustomerIdIR_WS_2.35BCMCVISAcustomCSS.css";
     assertEquals(expected, actual, "Sealstring is incorrect!");
   }
 
@@ -78,7 +80,7 @@ class SealCalculatorTest {
     paymentRequest.setCustomerContact(customerContact);
 
     String actual = SealCalculator.getSealString(paymentRequest);
-    String expected = "10http://test.comcustomerBusinessNamecustomerCityfirstNamelastNamecustomerIddeliveryCompanydeliveryZipcodeIR_WS_2.19customCSS.css";
+    String expected = "10http://test.comcustomerBusinessNamecustomerCityfirstNamelastNamecustomerIddeliveryCompanydeliveryZipcodeIR_WS_2.35customCSS.css";
     assertEquals(expected, actual, "Sealstring is incorrect!");
   }
 
@@ -86,7 +88,7 @@ class SealCalculatorTest {
   void getSealString_with_ignoredField() {
     paymentRequest.setKeyVersion(200);
     String actual = SealCalculator.getSealString(paymentRequest);
-    String expected = "10http://test.comcustomerIdIR_WS_2.19customCSS.css";
+    String expected = "10http://test.comcustomerIdIR_WS_2.35customCSS.css";
     assertEquals(expected, actual, "Sealstring is incorrect!");
   }
 

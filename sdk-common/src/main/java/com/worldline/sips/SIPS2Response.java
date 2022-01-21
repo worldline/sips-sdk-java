@@ -14,7 +14,7 @@ public class SIPS2Response implements Sealable {
       String correctSeal = SealCalculator.calculate(
           SealCalculator.getSealString(this), secretKey);
       if (! StringUtils.equals(correctSeal, seal)) {
-        throw new IncorrectSealException("The initialization response has been tampered with!");
+        throw new IncorrectSealException("The response has been tampered with!");
       }
     }
   }

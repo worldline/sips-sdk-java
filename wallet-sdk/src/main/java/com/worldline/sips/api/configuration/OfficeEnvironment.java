@@ -11,7 +11,7 @@ public enum OfficeEnvironment implements SipsEnvironment {
   private final URI uri;
 
   OfficeEnvironment(String url) {
-    this.url = url + "/rs-services/v2/";
+    this.url = url + "/rs-services/v2";
     this.uri = URI.create(url);
   }
 

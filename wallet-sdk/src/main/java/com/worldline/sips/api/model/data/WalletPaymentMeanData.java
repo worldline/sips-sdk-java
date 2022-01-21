@@ -11,6 +11,6 @@ public class WalletPaymentMeanData {
   String paymentMeanAlias;
   PaymentMeanBrand paymentMeanBrand;
   String paymentMeanBrandCobadgedList;
-  PaymentMeanData paymentMeanData;
+  /*PaymentMeanData*/ String paymentMeanData;
   String transactionActors;
 }

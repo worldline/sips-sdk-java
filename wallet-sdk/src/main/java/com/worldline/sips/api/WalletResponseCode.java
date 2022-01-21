@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.worldline.sips.exception.UnknownStatusException;
 
+//FIXME add data type https://documentation.sips.worldline.com/en/WLSIPS.001-GD-Data-dictionary.html#Sips.001_DD_en-Value-responseCode_
 public enum WalletResponseCode {
   /**
    * Successful operation
@@ -22,6 +23,8 @@ public enum WalletResponseCode {
    */
   UNKNOWN_WALLET("25"),
   FORMAT_ERROR("30"),
+
+  FRAUD_SUSPECTED("34"),
   /**
    * MerchantId not allowed to access this wallet service
    */
@@ -37,6 +40,10 @@ public enum WalletResponseCode {
   ;
 
   private final String code;
+
+  WalletResponseCode(String code) {
+    this.code = code;
+  }
 
   @JsonCreator
   public static WalletResponseCode fromCode(String code) throws UnknownStatusException {
@@ -54,8 +61,9 @@ public enum WalletResponseCode {
     return code;
   }
 
-
-  WalletResponseCode(String code) {
-    this.code = code;
+  @Override
+  public String toString() {
+    return code;
   }
+
 }

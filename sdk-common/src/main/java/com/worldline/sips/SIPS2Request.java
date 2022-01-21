@@ -43,7 +43,6 @@ public abstract class SIPS2Request<Response extends SIPS2Response> implements Se
 
   public void calculateSeal(String secretKey) throws SealCalculationException {
     this.seal = SealCalculator.calculate(SealCalculator.getSealString(this), secretKey);
-    //FIXME TODO
   }
 
   @JsonIgnore
@@ -54,6 +53,7 @@ public abstract class SIPS2Request<Response extends SIPS2Response> implements Se
     return this.getClass();
   }
 
+  @JsonIgnore
   public String getEndpoint() {
     return endpoint;
   }

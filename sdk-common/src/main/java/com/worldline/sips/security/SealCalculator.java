@@ -48,7 +48,7 @@ public class SealCalculator {
      */
     public static String getSealString(SIPS2Request<?> request) {
         ReflectionToStringBuilder reflectionToStringBuilder = new AlphabeticalReflectionToStringBuilder(request, new SealStringStyle());
-        reflectionToStringBuilder.setExcludeFieldNames("keyVersion");
+        reflectionToStringBuilder.setExcludeFieldNames("keyVersion", "endpoint");
         reflectionToStringBuilder.setExcludeNullValues(true);
         reflectionToStringBuilder.setAppendStatics(true);
         return reflectionToStringBuilder.toString();

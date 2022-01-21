@@ -11,6 +11,17 @@ import java.util.List;
 public class GetWalletDataResponse extends WalletResponse {
   private LocalDateTime walletCreationDateTime;
   private LocalDateTime walletLastActionDateTime;
-  private WalletResponseCode walletResponseCode;
   private List<WalletPaymentMeanData> walletPaymentMeanDataList;
+
+  public LocalDateTime getWalletCreationDateTime() {
+    return walletCreationDateTime;
+  }
+
+  public LocalDateTime getWalletLastActionDateTime() {
+    return walletLastActionDateTime;
+  }
+
+  public List<WalletPaymentMeanData> getWalletPaymentMeanDataList() {
+    return walletPaymentMeanDataList;
+  }
 }
