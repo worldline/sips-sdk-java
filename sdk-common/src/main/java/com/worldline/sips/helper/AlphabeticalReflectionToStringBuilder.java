@@ -9,5 +9,4 @@ public class AlphabeticalReflectionToStringBuilder extends SortedReflectionToStr
         setComparator(new AlphabeticalFieldComparator());
     }
 
-
 }

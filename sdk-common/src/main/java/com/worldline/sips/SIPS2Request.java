@@ -7,6 +7,13 @@ import com.worldline.sips.exception.SealCalculationException;
 import com.worldline.sips.security.SealCalculator;
 import com.worldline.sips.security.Sealable;
 
+/**
+ * An abstract object containing the basis of every SIPS requests
+ * @param <Response> the type of the response that should be returned by sending this request to SIPS
+ *
+ * @see Sealable
+ * @see SIPS2Response
+ */
 @JsonPropertyOrder(alphabetic = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class SIPS2Request<Response extends SIPS2Response> implements Sealable {
@@ -14,11 +21,47 @@ public abstract class SIPS2Request<Response extends SIPS2Response> implements Se
   private String merchantId;
   private Integer keyVersion;
   private String sealAlgorithm;
-
   private final String endpoint;
 
+  /**
+   * @param endpoint the http endpoint targeted by this request
+   */
   public SIPS2Request(String endpoint) {
     this.endpoint = endpoint;
+  }
+
+  /**
+   * Compute the seal of this request.
+   *
+   * @throws SealCalculationException when seal calculation fails, see inner exception for details.
+   */
+  public void calculateSeal(String secretKey) throws SealCalculationException {
+    this.seal = SealCalculator.calculate(SealCalculator.getSealString(this), secretKey);
+  }
+
+  /**
+   * Should be provided by subclasses to permit the deserialization of the response
+   * @return the response's type
+   */
+  @JsonIgnore
+  public abstract Class<Response> getResponseType();
+
+  @JsonIgnore
+  final Class<? extends SIPS2Request> getRealType() {
+    return this.getClass();
+  }
+
+  @JsonIgnore
+  public String getEndpoint() {
+    return endpoint;
+  }
+
+  public String getSealAlgorithm() {
+    return sealAlgorithm;
+  }
+
+  public void setSealAlgorithm(String sealAlgorithm) {
+    this.sealAlgorithm = sealAlgorithm;
   }
 
   public String getMerchantId() {
@@ -41,28 +84,4 @@ public abstract class SIPS2Request<Response extends SIPS2Response> implements Se
     return seal;
   }
 
-  public void calculateSeal(String secretKey) throws SealCalculationException {
-    this.seal = SealCalculator.calculate(SealCalculator.getSealString(this), secretKey);
-  }
-
-  @JsonIgnore
-  public abstract Class<Response> getResponseType();
-
-  @JsonIgnore
-  public final Class<? extends SIPS2Request> getRealType() {
-    return this.getClass();
-  }
-
-  @JsonIgnore
-  public String getEndpoint() {
-    return endpoint;
-  }
-
-  public String getSealAlgorithm() {
-    return sealAlgorithm;
-  }
-
-  public void setSealAlgorithm(String sealAlgorithm) {
-    this.sealAlgorithm = sealAlgorithm;
-  }
 }

@@ -14,6 +14,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Utility class to compute seals.
+ * @see Sealable
+ */
 public class SealCalculator {
     private SealCalculator() {
         // Nothing to see here
@@ -37,7 +41,6 @@ public class SealCalculator {
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             throw new SealCalculationException("Seal could not be calculated!", e);
         }
-
     }
 
     /**

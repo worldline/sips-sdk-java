@@ -55,7 +55,12 @@ public class SortedReflectionToStringBuilder extends ReflectionToStringBuilder {
     return this.getStringBuffer().toString();
   }
 
-  public static List<Field> getAllFields(Class<?> type) {
+  /**
+   * Get all the fields of a given type (include private and inherited fields from the class hierarchy)
+   * @param type
+   * @return a list containing all the fields of the given type
+   */
+  private static List<Field> getAllFields(Class<?> type) {
     List<Field> fields = new ArrayList<>();
     List<List<Field>> temp = new ArrayList<>();
     for (Class<?> c = type; c != null; c = c.getSuperclass()) {

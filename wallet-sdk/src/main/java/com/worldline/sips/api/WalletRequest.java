@@ -2,10 +2,9 @@ package com.worldline.sips.api;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.worldline.sips.SIPS2Request;
+import com.worldline.sips.api.configuration.OfficeConfiguration;
 
 public abstract class WalletRequest<R extends WalletResponse> extends SIPS2Request<R> {
-
-  private final String interfaceVersion = "WR_WS_2.39";
 
   public WalletRequest(String endpoint) {
     super("wallet/" + endpoint);
@@ -13,6 +12,6 @@ public abstract class WalletRequest<R extends WalletResponse> extends SIPS2Reque
 
   @JsonInclude
   public String getInterfaceVersion() {
-    return interfaceVersion;
+    return OfficeConfiguration.INTERFACE_VERSION;
   }
 }

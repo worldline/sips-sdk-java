@@ -11,7 +11,10 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * Container for the global mapper object instance
+ * @see ObjectMapper
+ */
 public enum ObjectMapperHolder {
     INSTANCE;
 

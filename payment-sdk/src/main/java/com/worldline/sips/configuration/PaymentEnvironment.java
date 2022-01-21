@@ -3,7 +3,7 @@ package com.worldline.sips.configuration;
 import com.worldline.sips.model.SipsEnvironment;
 
 /**
- * The different environments available for the Worldline SIPS API.
+ * The different environments available for the Worldline SIPS payment API.
  */
 public enum PaymentEnvironment implements SipsEnvironment {
     SIMU("https://payment-webinit.simu.sips-services.com/rs-services/v2/paymentInit"),

@@ -1,6 +1,5 @@
 package com.worldline.sips.api;
 
-import com.worldline.sips.configuration.Configuration;
 import com.worldline.sips.exception.SealCalculationException;
 import com.worldline.sips.model.data.Address;
 import com.worldline.sips.model.data.Currency;

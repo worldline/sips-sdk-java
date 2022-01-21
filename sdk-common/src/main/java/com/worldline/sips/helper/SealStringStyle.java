@@ -6,7 +6,10 @@ import org.apache.commons.lang3.builder.RecursiveToStringStyle;
 
 import java.util.Arrays;
 
-
+/**
+ * A {@link RecursiveToStringStyle} parametrized to the seal format
+ * @see com.worldline.sips.security.Sealable
+ */
 public final class SealStringStyle extends RecursiveToStringStyle {
     public SealStringStyle() {
         super();
@@ -41,6 +44,6 @@ public final class SealStringStyle extends RecursiveToStringStyle {
 
     @Override
     protected boolean accept(Class<?> clazz) {
-        return !clazz.isEnum() && clazz.getPackage().getName().startsWith("com.worldline");
+        return ! clazz.isEnum() && clazz.getPackage().getName().startsWith("com.worldline");
     }
 }
