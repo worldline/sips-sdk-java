@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.worldline.sips.SIPS2Request;
 import com.worldline.sips.configuration.PaymentConfiguration;
-
+import com.worldline.sips.model.PaymentMeanBrand;
 import com.worldline.sips.model.data.Address;
 import com.worldline.sips.model.data.CaptureMode;
 import com.worldline.sips.model.data.Contact;
@@ -14,9 +14,9 @@ import com.worldline.sips.model.data.CustomerAddress;
 import com.worldline.sips.model.data.CustomerContact;
 import com.worldline.sips.model.data.Language;
 import com.worldline.sips.model.data.OrderChannel;
-import com.worldline.sips.model.PaymentMeanBrand;
 import com.worldline.sips.model.data.PaypageData;
 import com.worldline.sips.model.response.InitializationResponse;
+
 import java.net.URL;
 import java.util.TreeSet;
 
@@ -65,11 +65,11 @@ public class PaymentRequest extends SIPS2Request<InitializationResponse> {
     private String templateName;
     private PaypageData paypageData;
 
-  public PaymentRequest() {
-    super("");
-  }
+    public PaymentRequest() {
+        super("");
+    }
 
-  public Integer getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
@@ -270,6 +270,10 @@ public class PaymentRequest extends SIPS2Request<InitializationResponse> {
         return orderId;
     }
 
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     public String getReturnContext() {
         return returnContext;
     }
@@ -284,10 +288,6 @@ public class PaymentRequest extends SIPS2Request<InitializationResponse> {
 
     public void setTransactionOrigin(String transactionOrigin) {
         this.transactionOrigin = transactionOrigin;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
     }
 
     public TreeSet<PaymentMeanBrand> getPaymentMeanBrandList() {
@@ -328,6 +328,6 @@ public class PaymentRequest extends SIPS2Request<InitializationResponse> {
 
     @Override
     public Class<InitializationResponse> getResponseType() {
-      return InitializationResponse.class;
+        return InitializationResponse.class;
     }
 }

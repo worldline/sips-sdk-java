@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Utility class to compute seals.
+ *
  * @see Sealable
  */
 public class SealCalculator {

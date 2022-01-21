@@ -22,8 +22,6 @@ public class PaypageResponse extends SIPS2Response {
     private String encode;
     @JsonProperty("InterfaceVersion")
     private String interFaceVersion;
-//    @JsonProperty("Seal")
-//    private String seal;
 
     public ResponseData getData() {
         return data;

@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 /**
  * A {@link RecursiveToStringStyle} parametrized to the seal format
+ *
  * @see com.worldline.sips.security.Sealable
  */
 public final class SealStringStyle extends RecursiveToStringStyle {
@@ -27,9 +28,9 @@ public final class SealStringStyle extends RecursiveToStringStyle {
 
     @Override
     public void appendDetail(StringBuffer buffer, String fieldName, Object value) {
-        if (!ClassUtils.isPrimitiveWrapper(value.getClass()) &&
-                !String.class.equals(value.getClass()) &&
-                accept(value.getClass())) {
+        if (! ClassUtils.isPrimitiveWrapper(value.getClass()) &&
+            ! String.class.equals(value.getClass()) &&
+            accept(value.getClass())) {
             buffer.append(AlphabeticalReflectionToStringBuilder.toString(value, this));
         } else {
             super.appendDetail(buffer, fieldName, value);

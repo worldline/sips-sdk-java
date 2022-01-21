@@ -3,6 +3,7 @@ package com.worldline.sips.model.response;
 import com.worldline.sips.SIPS2Response;
 import com.worldline.sips.model.data.RedirectionStatusCode;
 import com.worldline.sips.model.data.ResponseCode;
+
 import java.net.URL;
 
 /**
@@ -73,10 +74,10 @@ public class InitializationResponse extends SIPS2Response {
         this.responseCode = responseCode;
     }
 
-  @Override
-  public String toString() {
-    return String.format(
-        "InitializationResponse{errorFieldName='%s', redirectionData='%s', redirectionStatusCode=%s, redirectionStatusMessage='%s', redirectionUrl=%s, redirectionVersion='%s', responseCode=%s, seal='%s'}",
-        errorFieldName, redirectionData, redirectionStatusCode, redirectionStatusMessage, redirectionUrl, redirectionVersion, responseCode, getSeal());
-  }
+    @Override
+    public String toString() {
+        return String.format(
+            "InitializationResponse{errorFieldName='%s', redirectionData='%s', redirectionStatusCode=%s, redirectionStatusMessage='%s', redirectionUrl=%s, redirectionVersion='%s', responseCode=%s, seal='%s'}",
+            errorFieldName, redirectionData, redirectionStatusCode, redirectionStatusMessage, redirectionUrl, redirectionVersion, responseCode, getSeal());
+    }
 }

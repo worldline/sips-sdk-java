@@ -21,18 +21,18 @@ public class ResponseDataDeserializer extends JsonDeserializer<ResponseData> {
         }
         final String value = jsonParser.getText().trim();
         final Map<String, String> mapped = Arrays.stream(value.split("\\|"))
-                .map(element -> element.split("=", 2))
-                .filter(pair -> isNotNullOrEmpty(pair[1]))
-                .collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]));
+            .map(element -> element.split("=", 2))
+            .filter(pair -> isNotNullOrEmpty(pair[1]))
+            .collect(Collectors.toMap(pair -> pair[0], pair -> pair[1]));
 
 
         return ObjectMapperHolder.INSTANCE.get().copy()
-                .convertValue(mapped, ResponseData.class);
+            .convertValue(mapped, ResponseData.class);
 
     }
 
     private boolean isNotNullOrEmpty(final CharSequence cs) {
-        return !StringUtils.isBlank(cs) && !StringUtils.equals(cs, "null");
+        return ! StringUtils.isBlank(cs) && ! StringUtils.equals(cs, "null");
     }
 
 }

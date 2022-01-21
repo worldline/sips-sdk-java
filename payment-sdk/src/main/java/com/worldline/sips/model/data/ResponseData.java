@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.worldline.sips.helper.BooleanDeserializer;
 import com.worldline.sips.helper.RuleResultListDeserializer;
-
 import com.worldline.sips.model.PaymentMeanBrand;
 import com.worldline.sips.model.PaymentMeanType;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -73,7 +73,6 @@ public class ResponseData {
     private String orderId;
 
     private String returnContext;
-
 
 
     public int getAmount() {

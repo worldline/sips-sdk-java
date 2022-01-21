@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Container for the global mapper object instance
+ *
  * @see ObjectMapper
  */
 public enum ObjectMapperHolder {
@@ -26,7 +27,7 @@ public enum ObjectMapperHolder {
 
     private static ObjectMapper create() {
         return new ObjectMapper()
-                .registerModule(new JavaTimeModule()
+            .registerModule(new JavaTimeModule()
                 .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ISO_OFFSET_DATE_TIME))
                 .addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.BASIC_ISO_DATE))
                 .addDeserializer(YearMonth.class, new YearMonthDeserializer(DateTimeFormatter.ofPattern("yyyyMM"))));
