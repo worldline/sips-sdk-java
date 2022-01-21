@@ -1,10 +1,11 @@
-package com.worldline.sips.model.data;
+package com.worldline.sips.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.apache.commons.lang3.StringUtils;
 
 public enum PaymentMeanType {
-    CARD, CREDIT_TRANSFER, DIRECT_DEBIT, EMPTY;
+    CARD, CREDIT_TRANSFER, DIRECT_DEBIT,
+  VOUCHER, WALLET, ONLINE_CREDIT, EMPTY, PROVIDER;
 
     @JsonCreator
     public static PaymentMeanType fromValue(String value) {
