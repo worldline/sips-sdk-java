@@ -13,11 +13,6 @@ public class GetWalletDataRequest extends WalletRequest<GetWalletDataResponse> {
     this.merchantWalletId = merchantWalletId;
   }
 
-  @Override
-  public Class<GetWalletDataResponse> getResponseType() {
-    return GetWalletDataResponse.class;
-  }
-
   public String getIntermediateServiceProviderId() {
     return intermediateServiceProviderId;
   }
@@ -28,5 +23,10 @@ public class GetWalletDataRequest extends WalletRequest<GetWalletDataResponse> {
 
   public String getMerchantWalletId() {
     return merchantWalletId;
+  }
+
+  @Override
+  public Class<GetWalletDataResponse> getResponseType() {
+    return GetWalletDataResponse.class;
   }
 }
