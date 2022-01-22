@@ -1,8 +1,8 @@
 package com.worldline.sips.api;
 
-import com.worldline.sips.SIPS2Response;
+import com.worldline.sips.SIPSResponse;
 
-public abstract class WalletResponse extends SIPS2Response {
+public abstract class WalletResponse extends SIPSResponse {
     private String errorFieldName;
     private WalletResponseCode walletResponseCode;
 

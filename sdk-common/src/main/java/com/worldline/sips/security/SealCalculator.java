@@ -1,7 +1,7 @@
 package com.worldline.sips.security;
 
-import com.worldline.sips.SIPS2Request;
-import com.worldline.sips.SIPS2Response;
+import com.worldline.sips.SIPSRequest;
+import com.worldline.sips.SIPSResponse;
 import com.worldline.sips.exception.SealCalculationException;
 import com.worldline.sips.helper.AlphabeticalReflectionToStringBuilder;
 import com.worldline.sips.helper.SealStringStyle;
@@ -25,13 +25,13 @@ public class SealCalculator {
     }
 
     /**
-     * Calculate the encrypted seal for a {@link SIPS2Request} based on a given seal string.
+     * Calculate the encrypted seal for a {@link SIPSRequest} based on a given seal string.
      *
-     * @param sealString the seal string for the {@link SIPS2Request} that needs to be signed
+     * @param sealString the seal string for the {@link SIPSRequest} that needs to be signed
      * @param key        the merchant's secret key
      * @return the encrypted seal for the request
      * @throws SealCalculationException when the encryption fails (e.g. algorithm missing, invalid key specified)
-     * @see #getSealString(SIPS2Request)
+     * @see #getSealString(SIPSRequest)
      */
     public static String calculate(String sealString, String key) throws SealCalculationException {
         try {
@@ -45,12 +45,12 @@ public class SealCalculator {
     }
 
     /**
-     * Sort &amp; concatenate the fields of a given {@link SIPS2Request}, needed to correctly sign the request.
+     * Sort &amp; concatenate the fields of a given {@link SIPSRequest}, needed to correctly sign the request.
      *
      * @param request the request that's needs to be signed
      * @return a String, formatted as described in the API docs.
      */
-    public static String getSealString(SIPS2Request<?> request) {
+    public static String getSealString(SIPSRequest<?> request) {
         ReflectionToStringBuilder reflectionToStringBuilder = new AlphabeticalReflectionToStringBuilder(request, new SealStringStyle());
         reflectionToStringBuilder.setExcludeFieldNames("keyVersion", "endpoint");
         reflectionToStringBuilder.setExcludeNullValues(true);
@@ -59,12 +59,12 @@ public class SealCalculator {
     }
 
     /**
-     * Sort &amp; concatenate the fields of a given {@link SIPS2Response}, needed to correctly verify a response.
+     * Sort &amp; concatenate the fields of a given {@link SIPSResponse}, needed to correctly verify a response.
      *
      * @param response the response that's needs to be verified
      * @return a String, formatted as described in the API docs.
      */
-    public static String getSealString(SIPS2Response response) {
+    public static String getSealString(SIPSResponse response) {
         ReflectionToStringBuilder reflectionToStringBuilder = new AlphabeticalReflectionToStringBuilder(response, new SealStringStyle());
         reflectionToStringBuilder.setExcludeFieldNames("seal");
         reflectionToStringBuilder.setExcludeNullValues(true);

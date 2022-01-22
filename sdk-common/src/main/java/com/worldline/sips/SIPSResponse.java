@@ -7,9 +7,9 @@ import com.worldline.sips.security.Sealable;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * An abstract response from SIPS2 that contains the seal mechanism logic
+ * An abstract response from SIPS that contains the seal mechanism logic
  */
-public abstract class SIPS2Response implements Sealable {
+public abstract class SIPSResponse implements Sealable {
     private String seal;
 
     /**

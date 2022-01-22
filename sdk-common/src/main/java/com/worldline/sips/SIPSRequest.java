@@ -12,11 +12,11 @@ import com.worldline.sips.security.Sealable;
  *
  * @param <Response> the type of the response that should be returned by sending this request to SIPS
  * @see Sealable
- * @see SIPS2Response
+ * @see SIPSResponse
  */
 @JsonPropertyOrder(alphabetic = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public abstract class SIPS2Request<Response extends SIPS2Response> implements Sealable {
+public abstract class SIPSRequest<Response extends SIPSResponse> implements Sealable {
     private final String endpoint;
     private String seal;
     private String merchantId;
@@ -26,7 +26,7 @@ public abstract class SIPS2Request<Response extends SIPS2Response> implements Se
     /**
      * @param endpoint the http endpoint targeted by this request
      */
-    public SIPS2Request(String endpoint) {
+    public SIPSRequest(String endpoint) {
         this.endpoint = endpoint;
     }
 
@@ -48,7 +48,7 @@ public abstract class SIPS2Request<Response extends SIPS2Response> implements Se
     public abstract Class<Response> getResponseType();
 
     @JsonIgnore
-    final Class<? extends SIPS2Request> getRealType() {
+    final Class<? extends SIPSRequest> getRealType() {
         return this.getClass();
     }
 

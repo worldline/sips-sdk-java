@@ -118,8 +118,8 @@ public class SipsClient {
      * @throws IllegalArgumentException – If conversion fails due to incompatible type; if so, root cause will contain underlying
      *                                  checked exception data binding functionality threw
      */
-    public static <Response extends SIPS2Response> Response decodeResponse(Class<Response> responseClass,
-                                                                           Map<String, String> parameters, String secretKey) throws IncorrectSealException, IllegalArgumentException {
+    public static <Response extends SIPSResponse> Response decodeResponse(Class<Response> responseClass,
+                                                                          Map<String, String> parameters, String secretKey) throws IncorrectSealException, IllegalArgumentException {
         verifySeal(parameters.get("Data"), parameters.get("Seal"), secretKey);
         return ObjectMapperHolder.INSTANCE.get().copy()
             .convertValue(parameters, responseClass);
@@ -151,7 +151,7 @@ public class SipsClient {
      * @throws SealCalculationException if a seal calculation failed
      * @throws IncorrectSealException   if the response's seal is incorrect
      */
-    public <Response extends SIPS2Response> Response send(SIPS2Request<Response> request)
+    public <Response extends SIPSResponse> Response send(SIPSRequest<Response> request)
         throws SipsRequestException, SipsException, SealCalculationException, IncorrectSealException {
         String fullPath = environment.getUrl() + "/" + request.getEndpoint();
         try {
@@ -198,7 +198,7 @@ public class SipsClient {
      * @throws IllegalArgumentException – If conversion fails due to incompatible type; if so, root cause will contain underlying
      *                                  checked exception data binding functionality threw
      */
-    public <Response extends SIPS2Response> Response decodeResponse(Class<Response> responseClass, Map<String, String> parameters)
+    public <Response extends SIPSResponse> Response decodeResponse(Class<Response> responseClass, Map<String, String> parameters)
         throws IncorrectSealException, IllegalArgumentException {
         return decodeResponse(responseClass, parameters, secretKey);
     }
@@ -210,9 +210,9 @@ public class SipsClient {
      * @param response the received response upon initialization
      * @throws IncorrectSealException   when the received seal is different from the one calculated
      * @throws SealCalculationException when seal calculation fails, see inner exception for details.
-     * @see SIPS2Response#verifySeal(String) = identical
+     * @see SIPSResponse#verifySeal(String) = identical
      */
-    private void verifySeal(SIPS2Response response) throws IncorrectSealException, SealCalculationException {
+    private void verifySeal(SIPSResponse response) throws IncorrectSealException, SealCalculationException {
         response.verifySeal(secretKey);
     }
 }

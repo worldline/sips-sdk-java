@@ -1,6 +1,6 @@
 package com.worldline.sips.model.response;
 
-import com.worldline.sips.SIPS2Response;
+import com.worldline.sips.SIPSResponse;
 import com.worldline.sips.model.data.RedirectionStatusCode;
 import com.worldline.sips.model.data.ResponseCode;
 
@@ -9,7 +9,7 @@ import java.net.URL;
 /**
  * The server's response to a session initialization request.
  */
-public class InitializationResponse extends SIPS2Response {
+public class InitializationResponse extends SIPSResponse {
     private String errorFieldName;
     private String redirectionData;
     private RedirectionStatusCode redirectionStatusCode;

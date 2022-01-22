@@ -3,7 +3,7 @@ package com.worldline.sips.model.request;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.worldline.sips.SIPS2Request;
+import com.worldline.sips.SIPSRequest;
 import com.worldline.sips.configuration.PaymentConfiguration;
 import com.worldline.sips.model.PaymentMeanBrand;
 import com.worldline.sips.model.data.Address;
@@ -28,7 +28,7 @@ import java.util.TreeSet;
  */
 @JsonPropertyOrder(alphabetic = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class PaymentRequest extends SIPS2Request<InitializationResponse> {
+public class PaymentRequest extends SIPSRequest<InitializationResponse> {
     private static final String INTERFACE_VERSION = PaymentConfiguration.INTERFACE_VERSION;
 
     private final TreeSet<PaymentMeanBrand> paymentMeanBrandList = new TreeSet<>();

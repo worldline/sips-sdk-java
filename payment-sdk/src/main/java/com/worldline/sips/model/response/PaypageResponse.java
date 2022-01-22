@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.worldline.sips.SIPS2Response;
+import com.worldline.sips.SIPSResponse;
 import com.worldline.sips.helper.ResponseDataDeserializer;
 import com.worldline.sips.model.data.ResponseData;
 
@@ -12,7 +12,7 @@ import com.worldline.sips.model.data.ResponseData;
  * The result of payment made via the SIPS payment page.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PaypageResponse extends SIPS2Response {
+public class PaypageResponse extends SIPSResponse {
 
     @JsonProperty("Data")
     @JsonUnwrapped
