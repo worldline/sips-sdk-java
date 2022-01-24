@@ -1,10 +1,7 @@
 package com.worldline.sips.api.model.data;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.worldline.sips.exception.UnknownStatusException;
 
-//FIXME add data type https://documentation.sips.worldline.com/en/WLSIPS.001-GD-Data-dictionary.html#Sips.001_DD_en-Value-responseCode_
 public enum NamedWalletResponseCode implements WalletResponseCode {
     /**
      * Successful operation

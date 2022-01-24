@@ -2,14 +2,12 @@ package com.worldline.sips.api.model.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.worldline.sips.model.PaymentMeanBrand;
-
 import java.time.YearMonth;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WalletPaymentMeanData {
-    /*PaymentMeanData*/ String paymentMeanData;
+    private String paymentMeanData;
     private String paymentMeanId;
-    //FIXME wtf ?
     private String maskedPan;
     private YearMonth panExpiryDate;
     private String paymentMeanAlias;
