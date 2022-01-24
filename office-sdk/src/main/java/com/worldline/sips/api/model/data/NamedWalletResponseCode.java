@@ -1,11 +1,11 @@
-package com.worldline.sips.api;
+package com.worldline.sips.api.model.data;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.worldline.sips.exception.UnknownStatusException;
 
 //FIXME add data type https://documentation.sips.worldline.com/en/WLSIPS.001-GD-Data-dictionary.html#Sips.001_DD_en-Value-responseCode_
-public enum WalletResponseCode {
+public enum NamedWalletResponseCode implements WalletResponseCode {
     /**
      * Successful operation
      */
@@ -40,21 +40,11 @@ public enum WalletResponseCode {
 
     private final String code;
 
-    WalletResponseCode(String code) {
+    NamedWalletResponseCode(String code) {
         this.code = code;
     }
 
-    @JsonCreator
-    public static WalletResponseCode fromCode(String code) throws UnknownStatusException {
-        for (WalletResponseCode responseCode : WalletResponseCode.values()) {
-            if (responseCode.getCode().equals(code)) {
-                return responseCode;
-            }
-        }
-
-        throw new UnknownStatusException(code + " is an unknown response code!");
-    }
-
+    @Override
     @JsonValue
     public String getCode() {
         return code;

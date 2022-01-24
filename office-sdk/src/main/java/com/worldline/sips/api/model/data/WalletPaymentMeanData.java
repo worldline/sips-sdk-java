@@ -48,4 +48,5 @@ public class WalletPaymentMeanData {
     public String getTransactionActors() {
         return transactionActors;
     }
+
 }

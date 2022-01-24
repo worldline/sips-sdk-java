@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.worldline.sips.exception.IncorrectProxyConfException;
 import com.worldline.sips.exception.IncorrectSealException;
 import com.worldline.sips.exception.InvalidEnvironmentException;
+import com.worldline.sips.exception.InvalidKeyException;
 import com.worldline.sips.exception.InvalidMerchantException;
 import com.worldline.sips.exception.SealCalculationException;
 import com.worldline.sips.exception.SipsException;
@@ -26,7 +27,6 @@ import org.apache.hc.core5.http.io.entity.StringEntity;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.InvalidKeyException;
 import java.util.Map;
 
 /**
@@ -113,6 +113,7 @@ public class SipsClient {
      * @param responseClass the type of the response to construct
      * @param parameters    the content of the received request, mapped as key-value pairs.
      * @param secretKey     the secret key used to create the request that induced this response
+     * @param <Response>  the type of the response
      * @return The constructed response.
      * @throws IncorrectSealException   - If the response has been tampered with.
      * @throws IllegalArgumentException – If conversion fails due to incompatible type; if so, root cause will contain underlying
@@ -143,9 +144,11 @@ public class SipsClient {
     /**
      * Send a request to sips and get the response synchronously.
      * <p>
-     * The seal of the request is calculated, the request is send, the response is received and its seal is checked.
+     * The seal of the request is calculated, the request is sent, the response is received and its seal is checked.
      *
-     * @param request the request that will be sent to SIPS
+     * @param request     the request that will be sent to SIPS
+     * @param <Response>  the type of the response
+     * @return a response object mapping the response sent by Sips
      * @throws SipsRequestException     if an error occurred while serializing or sending the request
      * @throws SipsException            if an error occurred while receiving or deserializing the response
      * @throws SealCalculationException if a seal calculation failed
@@ -193,6 +196,7 @@ public class SipsClient {
      *
      * @param responseClass the type of the response to construct
      * @param parameters    the content of the received request, mapped as key-value pairs.
+     * @param <Response>    the type of the response
      * @return The constructed response.
      * @throws IncorrectSealException   - If the response has been tampered with.
      * @throws IllegalArgumentException – If conversion fails due to incompatible type; if so, root cause will contain underlying

@@ -1,5 +1,4 @@
-include(':payment-sdk-common')
 include(':payment-sdk')
-include(':wallet-sdk')
+include(':office-sdk')
 include 'sdk-common'
 

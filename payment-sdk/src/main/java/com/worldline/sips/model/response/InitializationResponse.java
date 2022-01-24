@@ -73,11 +73,4 @@ public class InitializationResponse extends SIPSResponse {
     public void setResponseCode(ResponseCode responseCode) {
         this.responseCode = responseCode;
     }
-
-    @Override
-    public String toString() {
-        return String.format(
-            "InitializationResponse{errorFieldName='%s', redirectionData='%s', redirectionStatusCode=%s, redirectionStatusMessage='%s', redirectionUrl=%s, redirectionVersion='%s', responseCode=%s, seal='%s'}",
-            errorFieldName, redirectionData, redirectionStatusCode, redirectionStatusMessage, redirectionUrl, redirectionVersion, responseCode, getSeal());
-    }
 }

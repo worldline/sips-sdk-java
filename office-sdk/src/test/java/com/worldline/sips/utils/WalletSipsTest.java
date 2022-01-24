@@ -1,11 +1,14 @@
 package com.worldline.sips.utils;
 
 import com.worldline.sips.SipsClient;
-import com.worldline.sips.api.WalletResponseCode;
 import com.worldline.sips.api.configuration.OfficeEnvironment;
+import com.worldline.sips.api.model.data.NamedWalletResponseCode;
+import com.worldline.sips.api.model.data.WalletPaymentMeanData;
 import com.worldline.sips.api.model.request.GetWalletDataRequest;
 import com.worldline.sips.api.model.response.GetWalletDataResponse;
+import com.worldline.sips.model.PaymentMeanBrand;
 import com.worldline.sips.util.ObjectMapperHolder;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,7 +37,7 @@ public class WalletSipsTest {
 
         response = ObjectMapperHolder.INSTANCE.get().readerFor(GetWalletDataResponse.class)
             .readValue("{\"walletResponseCode\":\"00\"}");
-        Assertions.assertEquals(WalletResponseCode.SUCCESS, response.getWalletResponseCode());
+        Assertions.assertEquals(NamedWalletResponseCode.SUCCESS, response.getWalletResponseCode());
 
 
         response = ObjectMapperHolder.INSTANCE.get().readerFor(GetWalletDataResponse.class)
@@ -58,8 +61,16 @@ public class WalletSipsTest {
                 + "  ],\n"
                 + "  \"seal\": \"4579cfc4044c29550327f9cba0be400129e95cb5b2639c6e301484930b4f9f94\"\n"
                 + "}");
-        Assertions.assertEquals(WalletResponseCode.SUCCESS, response.getWalletResponseCode());
-
-
+        Assertions.assertEquals(NamedWalletResponseCode.SUCCESS, response.getWalletResponseCode());
+        List<WalletPaymentMeanData> list = response.getWalletPaymentMeanDataList();
+        Assertions.assertNotNull(list);
+        Assertions.assertEquals(2, list.size());
+      WalletPaymentMeanData walletPaymentMeanData = list.get(0);
+      Assertions.assertNull(walletPaymentMeanData.getPaymentMeanAlias());
+      Assertions.assertNull(walletPaymentMeanData.getPanExpiryDate());
+      Assertions.assertEquals("14", walletPaymentMeanData.getPaymentMeanId());
+      Assertions.assertEquals("4977##########02", walletPaymentMeanData.getMaskedPan());
+      Assertions.assertEquals(PaymentMeanBrand.SEPA_DIRECT_DEBIT, walletPaymentMeanData.getPaymentMeanBrand());
+      Assertions.assertNull(response.getErrorFieldName());
     }
 }

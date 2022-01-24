@@ -33,6 +33,7 @@ public abstract class SIPSRequest<Response extends SIPSResponse> implements Seal
     /**
      * Compute the seal of this request.
      *
+     * @param secretKey the secret key that will be used to generate this request's seal
      * @throws SealCalculationException when seal calculation fails, see inner exception for details.
      */
     public void calculateSeal(String secretKey) throws SealCalculationException {

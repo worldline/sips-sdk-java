@@ -20,8 +20,4 @@ public enum OfficeEnvironment implements SipsEnvironment {
         return url;
     }
 
-    public URI getURI() {
-        return uri;
-    }
-
 }

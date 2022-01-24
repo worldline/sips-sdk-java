@@ -57,20 +57,23 @@ allprojects {
                 }
             }
         }
-//        repositories {
-//            maven {
-//                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
-//                credentials {
-//                    username sonatypeUsername
-//                    password sonatypePassword
-//                }
-//            }
-//        }
-    }
+        repositories {
+            maven {
+                def releasesRepoUrl = "https://nexus.kazan.myworldline.com/repository/rcs-store-releases"
+                def snapshotsRepoUrl = "https://nexus.kazan.myworldline.com/repository/rcs-store-snapshots"
 
-    signing {
-        sign publishing.publications.maven
+                url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+                credentials {
+                    username= findProperty('nexusRepoUser')
+                    password= findProperty('nexusRepoPass')
+                }
+            }
+        }
     }
+//
+//    signing {
+//        sign publishing.publications.maven
+//    }
 
     javadoc {
         if (JavaVersion.current().isJava9Compatible()) {
