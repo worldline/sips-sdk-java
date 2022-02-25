@@ -12,8 +12,8 @@ public class WalletPaymentMeanData {
     private YearMonth panExpiryDate;
     private String paymentMeanAlias;
     private PaymentMeanBrand paymentMeanBrand;
-    private String paymentMeanBrandCobadgedList;
-    private String transactionActors;
+    private String[] paymentMeanCoBadgingBrandList;
+    private String[] transactionActors;
 
     public String getPaymentMeanId() {
         return paymentMeanId;
@@ -35,15 +35,15 @@ public class WalletPaymentMeanData {
         return paymentMeanBrand;
     }
 
-    public String getPaymentMeanBrandCobadgedList() {
-        return paymentMeanBrandCobadgedList;
+    public String[] getPaymentMeanCoBadgingBrandList() {
+        return paymentMeanCoBadgingBrandList;
     }
 
     public String getPaymentMeanData() {
         return paymentMeanData;
     }
 
-    public String getTransactionActors() {
+    public String[] getTransactionActors() {
         return transactionActors;
     }
 

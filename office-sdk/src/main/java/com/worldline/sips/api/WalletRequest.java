@@ -5,6 +5,7 @@ import com.worldline.sips.SIPSRequest;
 import com.worldline.sips.api.configuration.OfficeConfiguration;
 
 public abstract class WalletRequest<R extends WalletResponse> extends SIPSRequest<R> {
+  private static final String INTERFACE_VERSION = OfficeConfiguration.INTERFACE_VERSION;
 
     public WalletRequest(String endpoint) {
         super("wallet/" + endpoint);
@@ -12,6 +13,6 @@ public abstract class WalletRequest<R extends WalletResponse> extends SIPSReques
 
     @JsonInclude
     public String getInterfaceVersion() {
-        return OfficeConfiguration.INTERFACE_VERSION;
+        return INTERFACE_VERSION;
     }
 }

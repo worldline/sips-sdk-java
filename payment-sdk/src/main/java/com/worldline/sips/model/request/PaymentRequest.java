@@ -15,8 +15,8 @@ import com.worldline.sips.model.data.CustomerContact;
 import com.worldline.sips.model.data.Language;
 import com.worldline.sips.model.data.OrderChannel;
 import com.worldline.sips.model.data.PaypageData;
+import com.worldline.sips.model.data.S10TransactionReference;
 import com.worldline.sips.model.response.InitializationResponse;
-
 import java.net.URL;
 import java.util.TreeSet;
 
@@ -64,6 +64,7 @@ public class PaymentRequest extends SIPSRequest<InitializationResponse> {
     private String statementReference;
     private String templateName;
     private PaypageData paypageData;
+    private S10TransactionReference s10TransactionReference;
 
     public PaymentRequest() {
         super("");
@@ -326,7 +327,15 @@ public class PaymentRequest extends SIPSRequest<InitializationResponse> {
         this.paypageData = paypageData;
     }
 
-    @Override
+  public S10TransactionReference getS10TransactionReference() {
+    return s10TransactionReference;
+  }
+
+  public void setS10TransactionReference(S10TransactionReference s10TransactionReference) {
+    this.s10TransactionReference = s10TransactionReference;
+  }
+
+  @Override
     public Class<InitializationResponse> getResponseType() {
         return InitializationResponse.class;
     }

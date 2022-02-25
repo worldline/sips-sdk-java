@@ -2,6 +2,8 @@ package com.worldline.sips;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.worldline.sips.exception.IncorrectProxyConfException;
 import com.worldline.sips.exception.IncorrectSealException;
 import com.worldline.sips.exception.InvalidEnvironmentException;
@@ -12,6 +14,10 @@ import com.worldline.sips.exception.SipsException;
 import com.worldline.sips.exception.SipsRequestException;
 import com.worldline.sips.model.SipsEnvironment;
 import com.worldline.sips.util.ObjectMapperHolder;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Map;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
@@ -23,11 +29,6 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Map;
 
 /**
  * Interact with <em>SIPS APIs</em>.
@@ -125,6 +126,46 @@ public class SipsClient {
         return ObjectMapperHolder.INSTANCE.get().copy()
             .convertValue(parameters, responseClass);
     }
+
+  /**
+   * Decode a SIPS response object from a json string.
+   *
+   * @param responseClass the type of the response to construct
+   * @param rawJson       the content of the received request as raw JSON.
+   * @param <Response>  the type of the response
+   * @return The constructed response.
+   * @throws IncorrectSealException   - If the response has been tampered with.
+   * @throws IllegalArgumentException – If conversion fails due to incompatible type; if so, root cause will contain underlying
+   *                                  checked exception data binding functionality threw
+   */
+  public <Response extends SIPSResponse> Response decodeResponse(Class<Response> responseClass,
+      String rawJson) throws IncorrectSealException, IllegalArgumentException {
+      return decodeResponse(responseClass, rawJson, secretKey);
+  }
+  /**
+   * Decode a SIPS response object from a json string.
+   *
+   * @param responseClass the type of the response to construct
+   * @param rawJson       the content of the received request as raw JSON.
+   * @param secretKey     the secret key used to create the request that induced this response
+   * @param <Response>  the type of the response
+   * @return The constructed response.
+   * @throws IncorrectSealException   - If the response has been tampered with.
+   * @throws IllegalArgumentException – If conversion fails due to incompatible type; if so, root cause will contain underlying
+   *                                  checked exception data binding functionality threw
+   */
+  public static <Response extends SIPSResponse> Response decodeResponse(Class<Response> responseClass,
+      String rawJson, String secretKey) throws IncorrectSealException, IllegalArgumentException {
+    ObjectMapper copy = ObjectMapperHolder.INSTANCE.get().copy();
+    JsonNode jsonObj;
+    try {
+      jsonObj = copy.readTree(rawJson);
+    } catch (Exception e) {
+      throw new IllegalArgumentException(e);
+    }
+    verifySeal(jsonObj.get("Data").textValue(), jsonObj.get("Seal").textValue(), secretKey);
+    return copy.convertValue(jsonObj, responseClass);
+  }
 
     /**
      * Verify the seal of a sips response. To avoid tampered data,

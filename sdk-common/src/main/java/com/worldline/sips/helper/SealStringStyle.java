@@ -1,10 +1,10 @@
 package com.worldline.sips.helper;
 
+import java.time.YearMonth;
+import java.util.Arrays;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.RecursiveToStringStyle;
-
-import java.util.Arrays;
 
 /**
  * A {@link RecursiveToStringStyle} parametrized to the seal format
@@ -33,7 +33,10 @@ public final class SealStringStyle extends RecursiveToStringStyle {
             accept(value.getClass())) {
             buffer.append(AlphabeticalReflectionToStringBuilder.toString(value, this));
         } else {
-            super.appendDetail(buffer, fieldName, value);
+          if (value instanceof YearMonth) {
+            value = ((YearMonth) value).toString().replace("-", "");
+          }
+          super.appendDetail(buffer, fieldName, value);
         }
     }
 
