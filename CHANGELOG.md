@@ -27,7 +27,7 @@ All notable changes to this project will be documented in this file.
 :warning: **BREAKING:** Changed SIPS platform URLs
 
 ### Changed
-- Bumped interface version to 21R1 (IR_WS_2.35)
+- Bumped interface version to 21R1 (IR_WS_2.46)
 
 ### Upgraded
 - Update fasterxml/jackson to 2.12.1

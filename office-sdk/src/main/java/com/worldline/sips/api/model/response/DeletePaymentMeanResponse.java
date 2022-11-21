@@ -2,14 +2,13 @@ package com.worldline.sips.api.model.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.worldline.sips.api.WalletResponse;
-
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DeletePaymentMeanResponse extends WalletResponse {
-    private LocalDateTime walletActionDateTime;
+    private OffsetDateTime walletActionDateTime;
 
-    public LocalDateTime getWalletActionDateTime() {
+    public OffsetDateTime getWalletActionDateTime() {
         return walletActionDateTime;
     }
 }

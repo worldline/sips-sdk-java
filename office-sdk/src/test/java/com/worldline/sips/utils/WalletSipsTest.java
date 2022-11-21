@@ -4,9 +4,11 @@ import com.worldline.sips.SipsClient;
 import com.worldline.sips.api.configuration.OfficeEnvironment;
 import com.worldline.sips.api.model.data.NamedWalletResponseCode;
 import com.worldline.sips.api.model.data.WalletPaymentMeanData;
+import com.worldline.sips.api.model.request.DeletePaymentMeanRequest;
 import com.worldline.sips.api.model.request.GetWalletDataRequest;
+import com.worldline.sips.api.model.response.DeletePaymentMeanResponse;
 import com.worldline.sips.api.model.response.GetWalletDataResponse;
-import com.worldline.sips.model.PaymentMeanBrand;
+import com.worldline.sips.model.NamedPaymentMeanBrand;
 import com.worldline.sips.util.ObjectMapperHolder;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -20,6 +22,15 @@ public class WalletSipsTest {
     @BeforeEach
     public void setUp() throws Exception {
         sipsClient = new SipsClient(OfficeEnvironment.TEST, "201040040170001", 1, "rxSP61eeP_oNi5TxCD7Ngy9YcwC8MLw6OlmFGGcsY54");
+    }
+
+    @Test
+    void testDeleteWalletMean() throws Exception {
+      DeletePaymentMeanRequest req = new DeletePaymentMeanRequest("ATCTR59_3884977603", "2");
+      System.out.println(ObjectMapperHolder.INSTANCE.get().writerFor(DeletePaymentMeanRequest.class).writeValueAsString(req));
+      DeletePaymentMeanResponse response = sipsClient.send(req);
+      System.out.println("Response");
+      System.out.println(ObjectMapperHolder.INSTANCE.get().writerFor(DeletePaymentMeanResponse.class).writeValueAsString(response));
     }
 
     @Test
@@ -70,7 +81,7 @@ public class WalletSipsTest {
       Assertions.assertNull(walletPaymentMeanData.getPanExpiryDate());
       Assertions.assertEquals("14", walletPaymentMeanData.getPaymentMeanId());
       Assertions.assertEquals("4977##########02", walletPaymentMeanData.getMaskedPan());
-      Assertions.assertEquals(PaymentMeanBrand.SEPA_DIRECT_DEBIT, walletPaymentMeanData.getPaymentMeanBrand());
+      Assertions.assertEquals(NamedPaymentMeanBrand.SEPA_DIRECT_DEBIT, walletPaymentMeanData.getPaymentMeanBrand());
       Assertions.assertNull(response.getErrorFieldName());
     }
 }

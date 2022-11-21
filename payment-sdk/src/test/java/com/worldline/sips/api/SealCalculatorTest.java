@@ -1,7 +1,10 @@
 package com.worldline.sips.api;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.worldline.sips.exception.SealCalculationException;
-import com.worldline.sips.model.PaymentMeanBrand;
+import com.worldline.sips.model.NamedPaymentMeanBrand;
 import com.worldline.sips.model.data.Address;
 import com.worldline.sips.model.data.Currency;
 import com.worldline.sips.model.data.CustomerAddress;
@@ -10,14 +13,10 @@ import com.worldline.sips.model.data.RedirectionStatusCode;
 import com.worldline.sips.model.request.PaymentRequest;
 import com.worldline.sips.model.response.InitializationResponse;
 import com.worldline.sips.security.SealCalculator;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class SealCalculatorTest {
 
@@ -40,7 +39,7 @@ class SealCalculatorTest {
     @Test
     void getSealString() {
         String actual = SealCalculator.getSealString(paymentRequest);
-        String expected = "10http://test.comcustomerIdIR_WS_2.35customCSS.css";
+        String expected = "10http://test.comcustomerIdIR_WS_2.46customCSS.css";
         assertEquals(expected, actual, "Sealstring is incorrect!");
     }
 
@@ -48,16 +47,16 @@ class SealCalculatorTest {
     void getSealString_with_Currency() {
         paymentRequest.setCurrencyCode(Currency.EUR);
         String actual = SealCalculator.getSealString(paymentRequest);
-        String expected = "10http://test.com978customerIdIR_WS_2.35customCSS.css";
+        String expected = "10http://test.com978customerIdIR_WS_2.46customCSS.css";
         assertEquals(expected, actual, "Sealstring is incorrect!");
     }
 
     @Test
     void getSealString_with_list() {
-        paymentRequest.getPaymentMeanBrandList().add(PaymentMeanBrand.VISA);
-        paymentRequest.getPaymentMeanBrandList().add(PaymentMeanBrand.BCMC);
+        paymentRequest.getPaymentMeanBrandList().add(NamedPaymentMeanBrand.VISA);
+        paymentRequest.getPaymentMeanBrandList().add(NamedPaymentMeanBrand.BCMC);
         String actual = SealCalculator.getSealString(paymentRequest);
-        String expected = "10http://test.comcustomerIdIR_WS_2.35BCMCVISAcustomCSS.css";
+        String expected = "10http://test.comcustomerIdIR_WS_2.46BCMCVISAcustomCSS.css";
         assertEquals(expected, actual, "Sealstring is incorrect!");
     }
 
@@ -79,7 +78,7 @@ class SealCalculatorTest {
         paymentRequest.setCustomerContact(customerContact);
 
         String actual = SealCalculator.getSealString(paymentRequest);
-        String expected = "10http://test.comcustomerBusinessNamecustomerCityfirstNamelastNamecustomerIddeliveryCompanydeliveryZipcodeIR_WS_2.35customCSS.css";
+        String expected = "10http://test.comcustomerBusinessNamecustomerCityfirstNamelastNamecustomerIddeliveryCompanydeliveryZipcodeIR_WS_2.46customCSS.css";
         assertEquals(expected, actual, "Sealstring is incorrect!");
     }
 
@@ -87,7 +86,7 @@ class SealCalculatorTest {
     void getSealString_with_ignoredField() {
         paymentRequest.setKeyVersion(200);
         String actual = SealCalculator.getSealString(paymentRequest);
-        String expected = "10http://test.comcustomerIdIR_WS_2.35customCSS.css";
+        String expected = "10http://test.comcustomerIdIR_WS_2.46customCSS.css";
         assertEquals(expected, actual, "Sealstring is incorrect!");
     }
 

@@ -42,8 +42,12 @@ public final class SealStringStyle extends RecursiveToStringStyle {
 
     @Override
     protected void appendDetail(StringBuffer buffer, String fieldName, Object[] array) {
+      try {
         Arrays.sort(array);
-        super.appendDetail(buffer, fieldName, array);
+      } catch (ClassCastException ignored) {
+        System.out.println("test");
+      }
+      super.appendDetail(buffer, fieldName, array);
     }
 
     @Override
