@@ -13,8 +13,9 @@ public class S10TransactionReference {
 
     }
 
-    public S10TransactionReference(int s10TransactionId) {
+    public S10TransactionReference(int s10TransactionId, LocalDate date) {
       this.s10TransactionId = s10TransactionId;
+      this.s10TransactionIdDate = date;
     }
 
   public int getS10TransactionId() {

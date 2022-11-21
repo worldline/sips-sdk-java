@@ -5,14 +5,16 @@ import com.worldline.sips.SIPSResponse;
 import com.worldline.sips.exception.SealCalculationException;
 import com.worldline.sips.helper.AlphabeticalReflectionToStringBuilder;
 import com.worldline.sips.helper.SealStringStyle;
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.codec.binary.Hex;
 
 /**
  * Utility class to compute seals.
@@ -51,26 +53,30 @@ public class SealCalculator {
      * @return a String, formatted as described in the API docs.
      */
     public static String getSealString(SIPSRequest<?> request) {
-        ReflectionToStringBuilder reflectionToStringBuilder = new AlphabeticalReflectionToStringBuilder(request, new SealStringStyle());
-        reflectionToStringBuilder.setExcludeFieldNames("keyVersion", "endpoint");
-        reflectionToStringBuilder.setExcludeNullValues(true);
-        reflectionToStringBuilder.setAppendStatics(true);
+        AlphabeticalReflectionToStringBuilder reflectionToStringBuilder = AlphabeticalReflectionToStringBuilder.newInstance(request, new SealStringStyle());
+        configure(reflectionToStringBuilder);
         return reflectionToStringBuilder.toString();
     }
 
-    /**
+  /**
      * Sort &amp; concatenate the fields of a given {@link SIPSResponse}, needed to correctly verify a response.
      *
      * @param response the response that's needs to be verified
      * @return a String, formatted as described in the API docs.
      */
     public static String getSealString(SIPSResponse response) {
-        ReflectionToStringBuilder reflectionToStringBuilder = new AlphabeticalReflectionToStringBuilder(response, new SealStringStyle());
-        reflectionToStringBuilder.setExcludeFieldNames("seal");
-        reflectionToStringBuilder.setExcludeNullValues(true);
-
+        AlphabeticalReflectionToStringBuilder reflectionToStringBuilder = AlphabeticalReflectionToStringBuilder.newInstance(response, new SealStringStyle());
+        configure(reflectionToStringBuilder);
         return reflectionToStringBuilder.toString();
     }
+
+  private static void configure(AlphabeticalReflectionToStringBuilder reflectionToStringBuilder) {
+      reflectionToStringBuilder.addSerializer(YearMonth.class,o -> DateTimeFormatter.ofPattern("yyyyMM").format((YearMonth) o));
+      reflectionToStringBuilder.addSerializer(LocalDateTime.class,o -> DateTimeFormatter.ISO_OFFSET_DATE_TIME.format((LocalDateTime) o));
+      reflectionToStringBuilder.addSerializer(LocalDate.class,o -> DateTimeFormatter.BASIC_ISO_DATE.format((LocalDate) o));
+      reflectionToStringBuilder.setExcludeFieldNames("keyVersion", "endpoint", "sealAlgorithm", "seal");
+      reflectionToStringBuilder.setExcludeNullValues(true);
+  }
 
 }
 

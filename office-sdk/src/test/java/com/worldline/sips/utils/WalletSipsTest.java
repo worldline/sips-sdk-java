@@ -18,10 +18,13 @@ import org.junit.jupiter.api.Test;
 public class WalletSipsTest {
 
     private SipsClient sipsClient;
+    
+    public static final String SECRET_KEY = "yJb7SGlw6-_uy7E0aq8HG_V_rGPzZDuF7tzcvS-gzD4";
 
-    @BeforeEach
+
+  @BeforeEach
     public void setUp() throws Exception {
-        sipsClient = new SipsClient(OfficeEnvironment.TEST, "201040040170001", 1, "rxSP61eeP_oNi5TxCD7Ngy9YcwC8MLw6OlmFGGcsY54");
+        sipsClient = new SipsClient(OfficeEnvironment.TEST, "011122211100002", 1, SECRET_KEY);
     }
 
     @Test
@@ -35,9 +38,21 @@ public class WalletSipsTest {
 
     @Test
     void testSendWalletRequest() throws Exception {
-        GetWalletDataResponse response = sipsClient.send(new GetWalletDataRequest("1"));
-        System.out.println(response);
-    }
+      GetWalletDataRequest req = new GetWalletDataRequest("ATCTR59_3884977603");
+      System.out.println(ObjectMapperHolder.INSTANCE.get().writerFor(GetWalletDataRequest.class).writeValueAsString(req));
+      GetWalletDataResponse response = sipsClient.send(req);
+//      System.out.println("Response");
+      System.out.println(ObjectMapperHolder.INSTANCE.get().writerFor(GetWalletDataResponse.class).writeValueAsString(response));
+//      for (WalletPaymentMeanData walletPaymentMeanData : response.getWalletPaymentMeanDataList()) {
+//        YearMonth panExpiryDate = walletPaymentMeanData.getPanExpiryDate();
+//        // we check the expiry date (we don't care about expired cards after 3 months)
+//        if (panExpiryDate == null || panExpiryDate.isAfter(YearMonth.now().plus(3, ChronoUnit.MONTHS))) {
+//          System.out.println("yeet " + panExpiryDate);
+//          continue;
+//        }
+//        System.out.println("sus " + panExpiryDate);
+//      }
+  }
 
     @Test
     void testResponseDeserialization() throws Exception {

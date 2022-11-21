@@ -1,7 +1,6 @@
 package com.worldline.sips.model.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.worldline.sips.SIPSRequest;
 import com.worldline.sips.configuration.PaymentConfiguration;
@@ -29,7 +28,6 @@ import java.util.TreeSet;
 @JsonPropertyOrder(alphabetic = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PaymentRequest extends SIPSRequest<InitializationResponse> {
-    private static final String INTERFACE_VERSION = PaymentConfiguration.INTERFACE_VERSION;
 
     private final TreeSet<PaymentMeanBrand> paymentMeanBrandList = new TreeSet<>();
 
@@ -65,12 +63,22 @@ public class PaymentRequest extends SIPSRequest<InitializationResponse> {
     private String templateName;
     private PaypageData paypageData;
     private S10TransactionReference s10TransactionReference;
+    
+    private String interfaceVersion = PaymentConfiguration.INTERFACE_VERSION;
 
     public PaymentRequest() {
         super("");
     }
 
-    public Integer getAmount() {
+  public String getInterfaceVersion() {
+    return interfaceVersion;
+  }
+
+  public void setInterfaceVersion(String interfaceVersion) {
+    this.interfaceVersion = interfaceVersion;
+  }
+
+  public Integer getAmount() {
         return amount;
     }
 
@@ -204,11 +212,6 @@ public class PaymentRequest extends SIPSRequest<InitializationResponse> {
 
     public void setHolderContact(Contact holderContact) {
         this.holderContact = holderContact;
-    }
-
-    @JsonProperty("interfaceVersion")
-    public String getInterfaceVersion() {
-        return INTERFACE_VERSION;
     }
 
     public String getIntermediateServiceProviderId() {

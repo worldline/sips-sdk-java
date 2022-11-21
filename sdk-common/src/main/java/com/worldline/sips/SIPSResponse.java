@@ -23,9 +23,7 @@ public abstract class SIPSResponse implements Sealable {
     public void verifySeal(String secretKey) throws IncorrectSealException, SealCalculationException {
         if (seal != null) {
           String sealString = SealCalculator.getSealString(this);
-          System.out.println(sealString);
-          String correctSeal = SealCalculator.calculate(
-              sealString, secretKey);
+          String correctSeal = SealCalculator.calculate(sealString, secretKey);
             if (! StringUtils.equals(correctSeal, seal)) {
                 throw new IncorrectSealException("The response has been tampered with!");
             }

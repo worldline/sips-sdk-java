@@ -21,7 +21,7 @@ public abstract class SIPSRequest<Response extends SIPSResponse> implements Seal
     private String seal;
     private String merchantId;
     private Integer keyVersion;
-    private String sealAlgorithm;
+    private String sealAlgorithm = "HMAC-SHA-256";
 
     /**
      * @param endpoint the http endpoint targeted by this request

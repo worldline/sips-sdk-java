@@ -1,18 +1,21 @@
 package com.worldline.sips.helper;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.apache.commons.lang3.builder.ToStringSummary;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.lang3.builder.ToStringSummary;
 
 public class SortedReflectionToStringBuilder extends ReflectionToStringBuilder {
 
     private Comparator<Field> comparator;
+    private final Map<Class<?>, Function<Object, String>> customSerializers = new HashMap<>();
 
     public SortedReflectionToStringBuilder(Object object, ToStringStyle style) {
         super(object, style);
@@ -57,7 +60,11 @@ public class SortedReflectionToStringBuilder extends ReflectionToStringBuilder {
                     field.setAccessible(true);
                     // Warning: Field.get(Object) creates wrappers objects
                     // for primitive types.
-                    final Object fieldValue = this.getValue(field);
+                    Object fieldValue = this.getValue(field);
+                    Function<Object, String> serializer = customSerializers.get(field.getType());
+                    if (serializer != null) {
+                      fieldValue = serializer.apply(fieldValue);
+                    }
                     if (! isExcludeNullValues() || fieldValue != null) {
                         this.append(fieldName, fieldValue, ! field.isAnnotationPresent(ToStringSummary.class));
                     }
@@ -73,7 +80,16 @@ public class SortedReflectionToStringBuilder extends ReflectionToStringBuilder {
         getStyle().appendEnd(this.getStringBuffer(), this.getObject());
         return this.getStringBuffer().toString();
     }
-
+    
+    public void addSerializer(Class<?> clazz, Function<Object, String> serializer) {
+      customSerializers.put(clazz, serializer);
+    }
+  public SortedReflectionToStringBuilder initFrom(Object value) {
+    SortedReflectionToStringBuilder copy = new SortedReflectionToStringBuilder(value, getStyle());
+    copy.comparator = this.comparator;
+    copy.customSerializers.putAll(customSerializers);
+    return copy;
+  }
 }
 
 

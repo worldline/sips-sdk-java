@@ -2,8 +2,6 @@ package com.worldline.sips.model.response;
 
 import com.worldline.sips.SIPSResponse;
 import com.worldline.sips.model.data.RedirectionStatusCode;
-import com.worldline.sips.model.data.ResponseCode;
-
 import java.net.URL;
 
 /**
@@ -16,8 +14,6 @@ public class InitializationResponse extends SIPSResponse {
     private String redirectionStatusMessage;
     private URL redirectionUrl;
     private String redirectionVersion;
-    private ResponseCode responseCode;
-
     public String getErrorFieldName() {
         return errorFieldName;
     }
@@ -66,11 +62,4 @@ public class InitializationResponse extends SIPSResponse {
         this.redirectionVersion = redirectionVersion;
     }
 
-    public ResponseCode getResponseCode() {
-        return responseCode;
-    }
-
-    public void setResponseCode(ResponseCode responseCode) {
-        this.responseCode = responseCode;
-    }
 }

@@ -12,7 +12,14 @@ import org.apache.commons.lang3.builder.RecursiveToStringStyle;
  * @see com.worldline.sips.security.Sealable
  */
 public final class SealStringStyle extends RecursiveToStringStyle {
-    public SealStringStyle() {
+  
+    private SortedReflectionToStringBuilder reflectionToStringBuilder;
+
+    public void setReflectionToStringBuilder(SortedReflectionToStringBuilder reflectionToStringBuilder) {
+        this.reflectionToStringBuilder = reflectionToStringBuilder;
+    }
+
+  public SealStringStyle() {
         super();
         setUseClassName(false);
         setUseIdentityHashCode(false);
@@ -31,7 +38,7 @@ public final class SealStringStyle extends RecursiveToStringStyle {
         if (! ClassUtils.isPrimitiveWrapper(value.getClass()) &&
             ! String.class.equals(value.getClass()) &&
             accept(value.getClass())) {
-            buffer.append(AlphabeticalReflectionToStringBuilder.toString(value, this));
+            buffer.append(reflectionToStringBuilder.initFrom(value).toString());
         } else {
           if (value instanceof YearMonth) {
             value = ((YearMonth) value).toString().replace("-", "");
