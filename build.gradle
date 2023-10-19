@@ -6,7 +6,7 @@ allprojects {
     sourceCompatibility = 1.8
 
     group 'com.worldline.sips'
-    version '1.4.4-SNAPSHOT'
+    version '1.4.5-SNAPSHOT'
 
     task sourcesJar(type: Jar, dependsOn: classes) {
         archiveClassifier.set("sources")
@@ -59,18 +59,21 @@ allprojects {
         }
         repositories {
             maven {
-                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+                def releasesRepoUrl = "https://nexus.kazan.myworldline.com/repository/rcs-store-releases"
+                def snapshotsRepoUrl = "https://nexus.kazan.myworldline.com/repository/rcs-store-snapshots"
+
+                url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
                 credentials {
-                    username sonatypeUsername
-                    password sonatypePassword
+                    username= findProperty('nexusRepoUser')
+                    password= findProperty('nexusRepoPass')
                 }
             }
         }
     }
-
-    signing {
-        sign publishing.publications.maven
-    }
+//
+//    signing {
+//        sign publishing.publications.maven
+//    }
 
     javadoc {
         if (JavaVersion.current().isJava9Compatible()) {
